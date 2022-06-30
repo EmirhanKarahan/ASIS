@@ -18,6 +18,8 @@ final class LoginViewController: UIViewController {
     private var signInButton:UIButton!
     private var errorLabel:UILabel!
     
+    private var redirectToSignUpButton:UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Sign In"
@@ -27,7 +29,7 @@ final class LoginViewController: UIViewController {
     @objc func didTapSignIn(){
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
-            errorLabel.text = "Missing filed data"
+            errorLabel.text = "Missing data"
             return
         }
         
@@ -42,6 +44,10 @@ final class LoginViewController: UIViewController {
             UIApplication.shared.windows.first?.rootViewController = AppNavigationController()
         })
     }
+    
+    @objc func redirectToSignUp(){
+        UIApplication.shared.windows.first?.rootViewController = RegisterViewController()
+    }
 
     
     func configure(){
@@ -52,6 +58,12 @@ final class LoginViewController: UIViewController {
         signInLabel.text = "Sign In"
         signInLabel.font = UIFont.systemFont(ofSize: 24)
         view.addSubview(signInLabel)
+        
+        redirectToSignUpButton = UIButton(type: .system)
+        redirectToSignUpButton.translatesAutoresizingMaskIntoConstraints = false
+        redirectToSignUpButton.setTitle("Don't you have an account?", for: .normal)
+        redirectToSignUpButton.addTarget(self, action: #selector(redirectToSignUp), for: .touchUpInside)
+        view.addSubview(redirectToSignUpButton)
     
         errorLabel = UILabel()
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -127,6 +139,9 @@ final class LoginViewController: UIViewController {
             signInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
             signInButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             signInButton.widthAnchor.constraint(equalToConstant: 100),
+            
+            redirectToSignUpButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 5),
+            redirectToSignUpButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             
         ])
         

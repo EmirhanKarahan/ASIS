@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  ASIS
+
+  Created by Emirhan KARAHAN on 28.06.2022.
+  
+*/
+"Homepage" = "Anasayfa" ;
+"Stations" = "Duraklar" ;
+"Balance" = "Bakiye"   ;
+"Dealers" = "Bayiler"  ;
+"Busses" = "Otobüsler";
+"Change Language" = "Dil Değiştir";
+"Account Settings" = "Hesap Ayarları";
+"Share the App" = "Uygulamayı Paylaş";
+"Menu" = "Menü";

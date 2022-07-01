@@ -28,3 +28,26 @@ Launch Xcode and you are good to go.
 - Reset password
 - Some strings are not localized
 - Favorites section under Routes
+
+## Screenshots
+
+<p align="center">
+<img src="/screenshots/login-tr.png">
+<img src="/screenshots/register-tr.png">
+<img src="/screenshots/homepage-tr.png">
+
+<img src="/screenshots/bus-stops-tr.png">
+<img src="/screenshots/check-balance-en.png">
+<img src="/screenshots/routes-tr.png">
+<img src="/screenshots/route-details-tr.png">
+<img src="/screenshots/route-direction-selection-tr.png">
+
+<img src="/screenshots/buses-tr.png">
+<img src="/screenshots/side-menu-tr.png">
+<img src="/screenshots/account-settings-tr.png">
+
+<img src="/screenshots/share-app-tr.png">
+<img src="/screenshots/change-language-tr.png">
+</p>
+
+

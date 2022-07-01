@@ -8,6 +8,7 @@ target 'ASIS' do
   # Pods for ASIS
   pod 'Alamofire'
   pod 'SideMenu', '~> 6.0'
+  pod 'DropDown'
   
   pod 'FirebaseCore'
   pod 'FirebaseAnalytics'

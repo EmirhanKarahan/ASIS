@@ -10,7 +10,16 @@
 "Balance" = "Bakiye"   ;
 "Dealers" = "Bayiler"  ;
 "Busses" = "Otobüsler";
+"Routes" = "Rotalar";
+"Password" = "Parola";
+"Password again" = "Tekrar parola";
+"Reset Password" = "Parolayı Sıfırla";
+"Don't you have an account?" = "Bir hesabınız yok mu?";
+"Do you have an account already?" = "Zaten bir hesabınız var mı?";
+"Sign Up" = "Kayıt Ol";
+"Sign In" = "Giriş Yap";
 "Change Language" = "Dil Değiştir";
 "Account Settings" = "Hesap Ayarları";
 "Share the App" = "Uygulamayı Paylaş";
 "Menu" = "Menü";
+"Missing Data" = "Eksik Bilgi";

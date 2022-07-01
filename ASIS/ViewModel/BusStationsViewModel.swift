@@ -25,7 +25,7 @@ final class BusStationsViewModel:IBusStationsViewModel {
         busStationsService = BusStationsService()
     }
     
-    @objc func fetchStops() {
+    func fetchStops() {
         busStationsService.fetchAllDatas { [weak self] (response) in
             self?.stops = response ?? []
             self?.busStationsOutPut?.saveDatas(values: self?.stops ?? [])

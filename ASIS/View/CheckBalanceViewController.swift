@@ -124,8 +124,7 @@ extension CheckBalanceViewController{
         view.frame.origin.y = 0
     }
     @objc func dismissKeyboard() {
-        cardIDTextField.endEditing(true)
+        view.endEditing(true)
     }
-    
 }
 

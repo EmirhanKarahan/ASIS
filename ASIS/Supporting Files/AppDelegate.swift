@@ -12,12 +12,14 @@ import FirebaseCore
 import FirebaseAnalytics
 import FirebaseCrashlytics
 import FirebaseAuth
+import DropDown
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        DropDown.startListeningToKeyboard()
         return true
     }
 

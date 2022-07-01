@@ -25,7 +25,7 @@ final class LiveVehicleLocationsViewModel:ILiveVehicleLocationsViewModel {
         liveVehicleLocationsService = LiveVehicleLocationsService()
     }
     
-    @objc func fetchVehicles() {
+    func fetchVehicles() {
         liveVehicleLocationsService.fetchAllDatas { [weak self] (response) in
             self?.vehicles = response ?? []
             self?.liveVehicleLocationsOutPut?.saveDatas(values: self?.vehicles ?? [])

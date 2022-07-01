@@ -13,7 +13,7 @@ Launch Xcode and you are good to go.
 - Homepage: See your current location
 - Stations: See bus stop locations
 - Balance: See your card balance by typing cardId manually or scanning via NFC
-- Routes: Todo
+- Routes: See bus stops on a route and direction
 - Buses: See live bus locations (updates in every 15 seconds)
 - Account Settings: See logged in user's email, change password
 - Share the App: Share the app as app store url
@@ -21,3 +21,10 @@ Launch Xcode and you are good to go.
 > **Note:** 
 > - Auth capabilities is just for testing reasons, it doesn't affect any feature. 
 > - NFC capability isn't working because it requires Apple Developer account
+
+## Todo & Fix
+
+- Network Check on startup
+- Reset password
+- Some strings are not localized
+- Favorites section under Routes

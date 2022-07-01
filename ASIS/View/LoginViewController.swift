@@ -19,17 +19,29 @@ final class LoginViewController: UIViewController {
     private var errorLabel:UILabel!
     
     private var redirectToSignUpButton:UIButton!
+    var gestureRecognizer = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Sign In"
+        title = "Sign In".localized
         configure()
+        setupKeyboardHiding()
+    }
+    
+    private func setupKeyboardHiding(){
+        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        gestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func didTapSignIn(){
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
-            errorLabel.text = "Missing data"
+            errorLabel.text = "Missing data".localized
             return
         }
         
@@ -55,13 +67,13 @@ final class LoginViewController: UIViewController {
         
         signInLabel = UILabel()
         signInLabel.translatesAutoresizingMaskIntoConstraints = false
-        signInLabel.text = "Sign In"
+        signInLabel.text = "Sign In".localized
         signInLabel.font = UIFont.systemFont(ofSize: 24)
         view.addSubview(signInLabel)
         
         redirectToSignUpButton = UIButton(type: .system)
         redirectToSignUpButton.translatesAutoresizingMaskIntoConstraints = false
-        redirectToSignUpButton.setTitle("Don't you have an account?", for: .normal)
+        redirectToSignUpButton.setTitle("Don't you have an account?".localized, for: .normal)
         redirectToSignUpButton.addTarget(self, action: #selector(redirectToSignUp), for: .touchUpInside)
         view.addSubview(redirectToSignUpButton)
     
@@ -73,7 +85,7 @@ final class LoginViewController: UIViewController {
         
         emailLabel = UILabel()
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
-        emailLabel.text = "Email"
+        emailLabel.text = "Email".localized
         emailLabel.font = UIFont.systemFont(ofSize: 16)
         view.addSubview(emailLabel)
         
@@ -89,7 +101,7 @@ final class LoginViewController: UIViewController {
         
         passwordLabel = UILabel()
         passwordLabel.translatesAutoresizingMaskIntoConstraints = false
-        passwordLabel.text = "Password"
+        passwordLabel.text = "Password".localized
         passwordLabel.font = UIFont.systemFont(ofSize: 16)
         view.addSubview(passwordLabel)
         
@@ -106,7 +118,7 @@ final class LoginViewController: UIViewController {
         signInButton = UIButton()
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        signInButton.setTitle("Sign In", for: .normal)
+        signInButton.setTitle("Sign In".localized, for: .normal)
         signInButton.layer.cornerRadius = 5
         signInButton.backgroundColor = .orange
         signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
@@ -146,7 +158,5 @@ final class LoginViewController: UIViewController {
         ])
         
     }
-    
-    
     
 }

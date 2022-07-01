@@ -20,12 +20,25 @@ final class RegisterViewController: UIViewController {
     private var signUpButton:UIButton!
     private var errorLabel:UILabel!
     
+    var gestureRecognizer = UITapGestureRecognizer()
+    
     private var redirectToSignInButton:UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Sign Up"
+        title = "Sign Up".localized
         configure()
+        setupKeyboardHiding()
+    }
+    
+    private func setupKeyboardHiding(){
+        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        gestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func didTapSignUp(){
@@ -33,12 +46,12 @@ final class RegisterViewController: UIViewController {
               let password = passwordTextField.text, !password.isEmpty,
               let passwordAgain = passwordAgainTextField.text, !passwordAgain.isEmpty
         else {
-            errorLabel.text = "Missing data"
+            errorLabel.text = "Missing data".localized
             return
         }
         
         if password != passwordAgain {
-            errorLabel.text = "Passwords aren't matching"
+            errorLabel.text = "Passwords aren't matching".localized
             return
         }
 
@@ -64,13 +77,13 @@ final class RegisterViewController: UIViewController {
         
         signUpLabel = UILabel()
         signUpLabel.translatesAutoresizingMaskIntoConstraints = false
-        signUpLabel.text = "Sign Up"
+        signUpLabel.text = "Sign Up".localized
         signUpLabel.font = UIFont.systemFont(ofSize: 24)
         view.addSubview(signUpLabel)
         
         redirectToSignInButton = UIButton(type: .system)
         redirectToSignInButton.translatesAutoresizingMaskIntoConstraints = false
-        redirectToSignInButton.setTitle("Do you have an account already?", for: .normal)
+        redirectToSignInButton.setTitle("Do you have an account already?".localized, for: .normal)
         redirectToSignInButton.addTarget(self, action: #selector(redirectToSignIn), for: .touchUpInside)
         view.addSubview(redirectToSignInButton)
     
@@ -82,7 +95,7 @@ final class RegisterViewController: UIViewController {
         
         emailLabel = UILabel()
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
-        emailLabel.text = "Email"
+        emailLabel.text = "Email".localized
         emailLabel.font = UIFont.systemFont(ofSize: 16)
         view.addSubview(emailLabel)
         
@@ -98,7 +111,7 @@ final class RegisterViewController: UIViewController {
         
         passwordLabel = UILabel()
         passwordLabel.translatesAutoresizingMaskIntoConstraints = false
-        passwordLabel.text = "Password"
+        passwordLabel.text = "Password".localized
         passwordLabel.font = UIFont.systemFont(ofSize: 16)
         view.addSubview(passwordLabel)
         
@@ -114,7 +127,7 @@ final class RegisterViewController: UIViewController {
         
         passwordAgainLabel = UILabel()
         passwordAgainLabel.translatesAutoresizingMaskIntoConstraints = false
-        passwordAgainLabel.text = "Password again"
+        passwordAgainLabel.text = "Password again".localized
         passwordAgainLabel.font = UIFont.systemFont(ofSize: 16)
         view.addSubview(passwordAgainLabel)
         
@@ -131,7 +144,7 @@ final class RegisterViewController: UIViewController {
         signUpButton = UIButton()
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
         signUpButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        signUpButton.setTitle("Sign Up", for: .normal)
+        signUpButton.setTitle("Sign Up".localized, for: .normal)
         signUpButton.layer.cornerRadius = 5
         signUpButton.backgroundColor = .orange
         signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
@@ -179,7 +192,5 @@ final class RegisterViewController: UIViewController {
         ])
         
     }
-    
-    
     
 }

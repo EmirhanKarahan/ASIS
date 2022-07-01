@@ -31,7 +31,7 @@ final class AccountSettingsViewController: UIViewController {
         
         emailLabel = UILabel()
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
-        emailLabel.text = "Email"
+        emailLabel.text = "Email".localized
         emailLabel.font = UIFont.systemFont(ofSize: 18)
         view.addSubview(emailLabel)
         
@@ -48,7 +48,7 @@ final class AccountSettingsViewController: UIViewController {
         
         passwordLabel = UILabel()
         passwordLabel.translatesAutoresizingMaskIntoConstraints = false
-        passwordLabel.text = "Password"
+        passwordLabel.text = "Password".localized
         passwordLabel.font = UIFont.systemFont(ofSize: 16)
         view.addSubview(passwordLabel)
         
@@ -67,7 +67,7 @@ final class AccountSettingsViewController: UIViewController {
         resetPasswordButton = UIButton()
         resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         resetPasswordButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        resetPasswordButton.setTitle("Reset password", for: .normal)
+        resetPasswordButton.setTitle("Reset Password".localized, for: .normal)
         resetPasswordButton.layer.cornerRadius = 5
         resetPasswordButton.backgroundColor = .orange
         resetPasswordButton.addTarget(self, action: #selector(resetPasswordClicked), for: .touchUpInside)

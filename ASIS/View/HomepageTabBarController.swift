@@ -36,9 +36,9 @@ class HomepageTabBarController: UITabBarController {
         checkBalanceViewController.title = "Balance".localized
         checkBalanceViewController.tabBarItem = UITabBarItem.init(title: "Balance".localized, image: UIImage(named: "balance"), tag: 2)
         
-        let dealersViewController = DealersViewController()
-        dealersViewController.title = "Dealers".localized
-        dealersViewController.tabBarItem = UITabBarItem.init(title: "Dealers".localized, image: UIImage(named: "dealer"), tag: 3)
+        let dealersViewController = RoutesViewController()
+        dealersViewController.title = "Routes".localized
+        dealersViewController.tabBarItem = UITabBarItem.init(title: "Routes".localized, image: UIImage(named: "route"), tag: 3)
         
         let busGeolocationsViewController = LiveVehicleLocationsViewController()
         busGeolocationsViewController.title = "Busses".localized

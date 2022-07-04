@@ -225,8 +225,8 @@
 				1E6793D52869C8A700ADEE4B /* HomepageViewController.swift */,
 				1E6793E32869E93400ADEE4B /* BusStationsViewController.swift */,
 				1E6793E72869E98B00ADEE4B /* CheckBalanceViewController.swift */,
-				1E4CA902286EE76A001F5B6A /* Routes */,
 				1E6793E12869E91500ADEE4B /* LiveVehicleLocationsViewController.swift */,
+				1E4CA902286EE76A001F5B6A /* Routes */,
 			);
 			name = Home;
 			sourceTree = "<group>";

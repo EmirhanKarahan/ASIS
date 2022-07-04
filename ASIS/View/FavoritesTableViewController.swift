@@ -11,11 +11,17 @@ import CoreData
 final class FavoritesTableViewController: UITableViewController {
     
     var data = [NSManagedObject]()
+    
+    var services = [Service]()
+    
+    private let viewModel: BusServicesViewModel = BusServicesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "favoriteCell")
         fetch()
+        viewModel.setDelegate(output: self)
+        viewModel.fetchServices()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,7 +49,12 @@ final class FavoritesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(data[indexPath.row].value(forKey: "favoriteName"))
+        let favorite = data[indexPath.row]
+        let name = favorite.value(forKey: "favoriteName") as! String
+        guard let selectedService = findServiceByName(serviceName: name) else { return }
+        let vc = RouteDetailViewController()
+        vc.selectedService = selectedService
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func fetch(){
@@ -53,5 +64,18 @@ final class FavoritesTableViewController: UITableViewController {
         data = try! managedObjectContext!.fetch(fetchRequest)
         tableView.reloadData()
     }
+    
+    func findServiceByName(serviceName name:String) -> Service? {
+        if let i = services.firstIndex(where: { $0.name == name }) {
+            return services[i]
+        }
+        return nil
+    }
 
+}
+
+extension FavoritesTableViewController: BusServicesOutput{
+    func saveDatas(values: [Service]) {
+        services = values
+    }
 }

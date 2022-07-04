@@ -27,7 +27,7 @@ Launch Xcode and you are good to go.
 - [x] Network Check on startup
 - [x] Reset password
 - [x] Some strings are not localized
-- [ ] Favorites section under Routes
+- [x] Favorites section under Routes
 
 ## Screenshots
 

@@ -14,6 +14,7 @@ import CoreData
 
 final class RouteDetailViewController: UIViewController, CLLocationManagerDelegate {
     
+    private var data = [NSManagedObject]()
     var selectedService: Service!
     let locationManager = CLLocationManager()
     var selectedRoute: Route!{
@@ -48,6 +49,13 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
     
     var routeOverlay:MKOverlay?
     
+    func fetch(){
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedObjectContext = appDelegate?.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Favorite")
+        data = try! managedObjectContext!.fetch(fetchRequest)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -55,6 +63,12 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         configureDropdown()
         selectedRoute = selectedService?.routes?[0]
         drawRoute()
+        fetch()
+        for datum in data {
+            if selectedService.name == datum.value(forKey: "favoriteName") as? String{
+                    return
+            }
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-to-favorites"), style: .plain, target: self, action: #selector(addToFavorites))
     }
     
@@ -66,6 +80,7 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         favorite.setValue(selectedService.name, forKey: "favoriteName")
         favorite.setValue(selectedService.description, forKey: "favoriteDescription")
         try? managedObjectContext?.save()
+        navigationItem.rightBarButtonItem = nil
     }
     
     func configureDropdown(){

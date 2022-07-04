@@ -100,7 +100,23 @@ final class AccountSettingsViewController: UIViewController {
     }
     
     @objc func resetPasswordClicked(){
-        print("reset password clicked")
+        guard let email = currentUser.email else { return }
+        
+        FirebaseAuth.Auth.auth().sendPasswordReset(withEmail: email)
+        let ac = UIAlertController(title: "Success", message: "We sent you and email", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok".localized, style: .default){ _ in
+            do {
+                try FirebaseAuth.Auth.auth().signOut()
+                UIApplication.shared.windows.first?.rootViewController = LoginViewController()
+                print("signed out")
+            } catch {
+                print("Couldn't sign out, error occured")
+            }
+        })
+        present(ac, animated: true)
+        
+        
+        
     }
     
     

@@ -7,22 +7,38 @@
 
 import UIKit
 import SideMenu
+import Alamofire
 
-class HomepageTabBarController: UITabBarController {
+final class HomepageTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addViewControllersToTabBar()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "burger-menu"), style: .plain, target: self, action: #selector(openMenu))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "burger-menu"), style: .plain, target: self, action: #selector(openSideMenu))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "favorites"), style: .plain, target: self, action: #selector(openFavorites))
         self.tabBarController?.tabBar.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     }
     
-    @objc func openMenu(){
+    @objc func openSideMenu(){
         let menu = SideMenuNavigationController(rootViewController: SideMenuTableViewController())
         menu.leftSide = true
         present(menu, animated: true, completion: nil)
     }
     
+    @objc func openFavorites(){
+        let favorites = SideMenuNavigationController(rootViewController: FavoritesTableViewController())
+        present(favorites, animated: true, completion: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !(NetworkReachabilityManager()?.isReachable ?? false){
+            let ac = UIAlertController(title: "Network connection missing", message: "Please, connect to a network", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok".localized, style: .default))
+            present(ac, animated: true)
+        }
+    }
+
     func addViewControllersToTabBar(){
         let homepageViewController = HomepageViewController()
         homepageViewController.title = "Homepage".localized

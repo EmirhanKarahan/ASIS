@@ -14,16 +14,16 @@ protocol BusServicesOutput{
 
 final class RoutesViewController: UITableViewController, UISearchBarDelegate {
     
-    let searchBar = UISearchBar()
+    private let searchBar = UISearchBar()
     
-    var services: [Service] = [] {
+    private var services: [Service] = [] {
         didSet{
             filteredServices = services
             tableView.reloadData()
         }
     }
-    var filteredServices: [Service] = []
-    let viewModel: BusServicesViewModel = BusServicesViewModel()
+    private var filteredServices: [Service] = []
+    private let viewModel: BusServicesViewModel = BusServicesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

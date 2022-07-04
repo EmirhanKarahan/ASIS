@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import Alamofire
 
 final class LoginViewController: UIViewController {
     
@@ -27,6 +28,16 @@ final class LoginViewController: UIViewController {
         configure()
         setupKeyboardHiding()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !(NetworkReachabilityManager()?.isReachable ?? false){
+            let ac = UIAlertController(title: "Network connection missing", message: "Please, connect to a network", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok".localized, style: .default))
+            present(ac, animated: true)
+        }
+    }
+
     
     private func setupKeyboardHiding(){
         gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))

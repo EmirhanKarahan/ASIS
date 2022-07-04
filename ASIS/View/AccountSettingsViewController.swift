@@ -108,7 +108,7 @@ final class AccountSettingsViewController: UIViewController {
             do {
                 try FirebaseAuth.Auth.auth().signOut()
                 UIApplication.shared.windows.first?.rootViewController = LoginViewController()
-                print("signed out")
+                print("Signed out")
             } catch {
                 print("Couldn't sign out, error occured")
             }

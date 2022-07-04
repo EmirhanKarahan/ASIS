@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class HomepageViewController: UIViewController, CLLocationManagerDelegate {
+final class HomepageViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     

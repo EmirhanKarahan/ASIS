@@ -24,7 +24,7 @@ Launch Xcode and you are good to go.
 
 ## Todo & Fix
 
-- [ ] Network Check on startup
+- [x] Network Check on startup
 - [x] Reset password
 - [x] Some strings are not localized
 - [ ] Favorites section under Routes

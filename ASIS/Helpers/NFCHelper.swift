@@ -28,13 +28,13 @@ class NFCHelper: NSObject, NFCNDEFReaderSessionDelegate {
     }
     
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        print("nfc invalidated \(error)")
+        print("NFC invalidated \(error)")
         guard let onNFCResult = onNFCResult else { return }
         onNFCResult(false, error.localizedDescription)
     }
     
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-        print("nfc detected")
+        print("NFC detected")
         guard let onNFCResult = onNFCResult else { return }
         for message in messages {
             for record in message.records {

@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class SideMenuTableViewController: UITableViewController {
+final class SideMenuTableViewController: UITableViewController {
     
     let menuItems = [
         "Account Settings".localized : AccountSettingsViewController(),
@@ -25,7 +25,6 @@ class SideMenuTableViewController: UITableViewController {
         return 4
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCell", for: indexPath)
         
@@ -62,7 +61,7 @@ class SideMenuTableViewController: UITableViewController {
             do {
                 try FirebaseAuth.Auth.auth().signOut()
                 UIApplication.shared.windows.first?.rootViewController = LoginViewController()
-                print("signed out")
+                print("Signed out")
             } catch {
                 print("Couldn't sign out, error occured")
             }

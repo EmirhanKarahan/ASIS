@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CheckBalanceViewController: UIViewController {
+final class CheckBalanceViewController: UIViewController {
     
     let helper = NFCHelper()
     var gestureRecognizer = UITapGestureRecognizer()
@@ -111,7 +111,7 @@ class CheckBalanceViewController: UIViewController {
     
     @objc func didCheckBalanceTapped(){
         cardIDTextField.endEditing(true)
-        print("check balance tapped")
+        print("Check balance tapped")
     }
 
 }

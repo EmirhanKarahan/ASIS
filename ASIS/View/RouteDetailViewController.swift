@@ -10,8 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 import DropDown
+import CoreData
 
-class RouteDetailViewController: UIViewController, CLLocationManagerDelegate {
+final class RouteDetailViewController: UIViewController, CLLocationManagerDelegate {
     
     var selectedService: Service!
     let locationManager = CLLocationManager()
@@ -54,6 +55,17 @@ class RouteDetailViewController: UIViewController, CLLocationManagerDelegate {
         configureDropdown()
         selectedRoute = selectedService?.routes?[0]
         drawRoute()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-to-favorites"), style: .plain, target: self, action: #selector(addToFavorites))
+    }
+    
+    @objc func addToFavorites(){
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedObjectContext = appDelegate?.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Favorite", in: managedObjectContext!)
+        let favorite = NSManagedObject(entity: entity!, insertInto: managedObjectContext)
+        favorite.setValue(selectedService.name, forKey: "favoriteName")
+        favorite.setValue(selectedService.description, forKey: "favoriteDescription")
+        try? managedObjectContext?.save()
     }
     
     func configureDropdown(){

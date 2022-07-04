@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LanguagePreferencesViewController: UITableViewController {
+final class LanguagePreferencesViewController: UITableViewController {
     var locales = [String]()
     
     override func viewDidLoad() {

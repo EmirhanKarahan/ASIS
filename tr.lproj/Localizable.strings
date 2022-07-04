@@ -23,3 +23,11 @@
 "Share the App" = "Uygulamayı Paylaş";
 "Menu" = "Menü";
 "Missing Data" = "Eksik Bilgi";
+"Check balance" = "Bakiyeni öğren";
+"Card Number" = "Kart Numarası";
+"Please, type your card id or scan it" = "Lütfen, kart numaranızı giriniz veya taratınız";
+"Fill with NFC scanning" = "NFC taraması ile doldur";
+"Direction" = "Yön";
+"direction" = "yön";
+"Weird, but no routes found." = "Garip, ama rota bulunamadı.";
+"Ok"="Tamam";

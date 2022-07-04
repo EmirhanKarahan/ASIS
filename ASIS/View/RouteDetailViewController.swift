@@ -17,7 +17,7 @@ class RouteDetailViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var selectedRoute: Route!{
         didSet{
-            title = "Direction: \(selectedRoute.destination ?? "Unknown") ⬇"
+            title = "\("Direction".localized): \(selectedRoute.destination ?? "Unknown") ⬇"
             
             let annotations = mapView.annotations.filter {
                 $0.title != "person"
@@ -60,7 +60,7 @@ class RouteDetailViewController: UIViewController, CLLocationManagerDelegate {
         menu = DropDown()
         var destinations:[String] = []
         for route in selectedService!.routes!{
-            destinations.append("direction: " + route.destination!)
+            destinations.append("\("direction".localized): \(route.destination ??  "Unknown")")
         }
         menu.dataSource = destinations
         menu.selectionAction = { index, title in

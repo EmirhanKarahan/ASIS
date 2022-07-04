@@ -34,13 +34,13 @@ class CheckBalanceViewController: UIViewController {
         let cardIDLabel = UILabel()
         cardIDLabel.translatesAutoresizingMaskIntoConstraints = false
         cardIDLabel.textAlignment = .right
-        cardIDLabel.text = "Card Number"
+        cardIDLabel.text = "Card Number".localized
         cardIDLabel.font = UIFont.systemFont(ofSize: 18)
         view.addSubview(cardIDLabel)
         
         cardIDTextField = UITextField()
         cardIDTextField.translatesAutoresizingMaskIntoConstraints = false
-        cardIDTextField.placeholder = "Please, type your card id or scan it"
+        cardIDTextField.placeholder = "Please, type your card id or scan it".localized
         cardIDTextField.textAlignment = .center
         cardIDTextField.font = UIFont.systemFont(ofSize: 20)
         cardIDTextField.layer.borderColor = UIColor.lightGray.cgColor
@@ -51,7 +51,7 @@ class CheckBalanceViewController: UIViewController {
         let scanNFCButton = UIButton(type: .system)
         scanNFCButton.translatesAutoresizingMaskIntoConstraints = false
         scanNFCButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        scanNFCButton.setTitle("Fill with NFC scanning", for: .normal)
+        scanNFCButton.setTitle("Fill with NFC scanning".localized, for: .normal)
         view.addSubview(scanNFCButton)
         scanNFCButton.addTarget(self, action: #selector(didScanNFCTapped), for: .touchUpInside)
         
@@ -62,7 +62,7 @@ class CheckBalanceViewController: UIViewController {
         checkBalanceButton.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         checkBalanceButton.tintColor = .white
         checkBalanceButton.layer.cornerRadius = 5
-        checkBalanceButton.setTitle("Check balance", for: .normal)
+        checkBalanceButton.setTitle("Check balance".localized, for: .normal)
         view.addSubview(checkBalanceButton)
         checkBalanceButton.addTarget(self, action: #selector(didCheckBalanceTapped), for: .touchUpInside)
         

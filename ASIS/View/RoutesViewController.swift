@@ -49,8 +49,8 @@ final class RoutesViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedService = filteredServices[indexPath.row]
         if selectedService.routes!.isEmpty {
-            let ac = UIAlertController(title: "Error", message: "Weird, but no routes found.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            let ac = UIAlertController(title: "Error", message: "Weird, but no routes found.".localized, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok".localized, style: .cancel))
             present(ac, animated: true)
             return
         }

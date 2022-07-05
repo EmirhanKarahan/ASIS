@@ -14,12 +14,23 @@ import CoreData
 
 final class RouteDetailViewController: UIViewController, CLLocationManagerDelegate {
     
+    //MARK: Properties
+    
     private var data = [NSManagedObject]()
     var selectedService: Service!
     let locationManager = CLLocationManager()
+    
+    private var directionButton:UIButton!
+    private var focusMeButton:UIButton!
+    private var focusRouteButton:UIButton!
+    
+    var menu:DropDown!
+    var routeOverlay:MKOverlay?
+    var personCoordinate:CLLocationCoordinate2D?
+    
     var selectedRoute: Route!{
         didSet{
-            title = "\("Direction".localized): \(selectedRoute.destination ?? "Unknown") ⬇"
+            title = "\("Direction".localized): \(selectedRoute.destination ?? "Unknown")"
             
             let annotations = mapView.annotations.filter {
                 $0.title != "person"
@@ -40,16 +51,15 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         }
     }
     
-    var menu:DropDown!
-    
     let mapView : MKMapView = {
         let map = MKMapView()
         return map
     }()
     
-    var routeOverlay:MKOverlay?
     
-    func fetch(){
+    // MARK: Functions
+    
+    private func fetch(){
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let managedObjectContext = appDelegate?.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Favorite")
@@ -61,6 +71,7 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         mapView.delegate = self
         setMapConstraints()
         configureDropdown()
+        configureButtons()
         selectedRoute = selectedService?.routes?[0]
         drawRoute()
         fetch()
@@ -83,7 +94,7 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         navigationItem.rightBarButtonItem = nil
     }
     
-    func configureDropdown(){
+    private func configureDropdown(){
         menu = DropDown()
         var destinations:[String] = []
         for route in selectedService!.routes!{
@@ -93,14 +104,6 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         menu.selectionAction = { index, title in
             self.selectedRoute = self.selectedService?.routes?[index]
         }
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapTopItem))
-        gesture.numberOfTapsRequired = 1
-        gesture.numberOfTouchesRequired = 1
-        navigationController?.navigationBar.addGestureRecognizer(gesture)
-    }
-    
-    @objc func didTapTopItem(){
-        menu.show()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -111,7 +114,7 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         locationManager.startUpdatingLocation()
     }
     
-    // MARK: - update it, just runs once
+    // TODO: - update it, it just runs once
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             locationManager.stopUpdatingLocation()
@@ -120,10 +123,10 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
     }
     
     func render(_ location: CLLocation) {
-        let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        
+        personCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let pin = MKPointAnnotation()
-        pin.coordinate = coordinate
+        guard let personCoordinate = personCoordinate else { return }
+        pin.coordinate = personCoordinate
         pin.title = "person"
         mapView.addAnnotation(pin)
     }
@@ -163,6 +166,71 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
     }
 
+}
+
+// MARK: Utility Buttons
+extension RouteDetailViewController{
+    
+    private func configureButtons(){
+        directionButton = UIButton()
+        directionButton.setImage(UIImage(named: "change-route"), for: .normal)
+        directionButton.backgroundColor = .systemGreen
+        directionButton.contentEdgeInsets = UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5)
+        directionButton.layer.cornerRadius = 8
+        directionButton.layer.opacity = 0.7
+        directionButton.translatesAutoresizingMaskIntoConstraints = false
+        directionButton.addTarget(self, action: #selector(didTapChangeDirection), for: .touchUpInside)
+        view.addSubview(directionButton)
+        
+        focusMeButton = UIButton()
+        focusMeButton.setImage(UIImage(named: "person-location"), for: .normal)
+        focusMeButton.backgroundColor = .systemBlue
+        focusMeButton.contentEdgeInsets = UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5)
+        focusMeButton.layer.cornerRadius = 8
+        focusMeButton.layer.opacity = 0.7
+        focusMeButton.translatesAutoresizingMaskIntoConstraints = false
+        focusMeButton.addTarget(self, action: #selector(didTapFocusMe), for: .touchUpInside)
+        view.addSubview(focusMeButton)
+        
+        focusRouteButton = UIButton()
+        focusRouteButton.setImage(UIImage(named: "route"), for: .normal)
+        focusRouteButton.backgroundColor = .systemOrange
+        focusRouteButton.contentEdgeInsets = UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5)
+        focusRouteButton.layer.cornerRadius = 8
+        focusRouteButton.layer.opacity = 0.7
+        focusRouteButton.translatesAutoresizingMaskIntoConstraints = false
+        focusRouteButton.addTarget(self, action: #selector(didTapFocusRoute), for: .touchUpInside)
+        view.addSubview(focusRouteButton)
+        
+        NSLayoutConstraint.activate([
+            directionButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            directionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            
+            focusMeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            focusMeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            
+            focusRouteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            focusRouteButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8)
+        ])
+    }
+    
+    @objc func didTapFocusRoute(){
+        DispatchQueue.main.async {
+            let customEdgePadding:UIEdgeInsets = UIEdgeInsets (top: 50, left: 50, bottom: 50, right: 50)
+            self.mapView.setVisibleMapRect(self.routeOverlay!.boundingMapRect, edgePadding: customEdgePadding,animated: true)
+        }
+    }
+    
+    @objc func didTapFocusMe(){
+        guard let personCoordinate = personCoordinate else { return }
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let region = MKCoordinateRegion(center: personCoordinate, span: span)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    @objc func didTapChangeDirection(){
+        menu.show()
+    }
 }
 
 extension RouteDetailViewController: MKMapViewDelegate{

@@ -15,6 +15,9 @@ protocol BusStationsOutPut {
 final class BusStationsViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
+    var coordinates: [CLLocationCoordinate2D] = []
+    var routeOverlay:MKOverlay?
+    
     lazy var viewModel:BusStationsViewModel = BusStationsViewModel()
     
     private var stops: [Stop] = [] {
@@ -27,8 +30,12 @@ final class BusStationsViewController: UIViewController, CLLocationManagerDelega
             for stop in stops {
                 let pin = MKPointAnnotation()
                 pin.coordinate = CLLocationCoordinate2D(latitude: stop.latitude!, longitude: stop.longitude!)
+                coordinates.append(CLLocationCoordinate2D(latitude: stop.latitude!, longitude: stop.longitude!))
                 mapView.addAnnotation(pin)
             }
+            self.routeOverlay = MKPolyline(coordinates: self.coordinates, count: self.coordinates.count)
+            let customEdgePadding:UIEdgeInsets = UIEdgeInsets (top: 50, left: 50, bottom: 50, right: 50)
+            self.mapView.setVisibleMapRect(self.routeOverlay!.boundingMapRect, edgePadding: customEdgePadding, animated: true)
         }
     }
     
@@ -36,12 +43,11 @@ final class BusStationsViewController: UIViewController, CLLocationManagerDelega
         let map = MKMapView()
         return map
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setMapConstraints()
         mapView.delegate = self
-        
         viewModel.setDelegate(output: self)
         viewModel.fetchStops()
     }
@@ -63,10 +69,6 @@ final class BusStationsViewController: UIViewController, CLLocationManagerDelega
     
     func render(_ location: CLLocation){
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-        
         let pin = MKPointAnnotation()
         pin.title = "person"
         pin.coordinate = coordinate
@@ -76,7 +78,6 @@ final class BusStationsViewController: UIViewController, CLLocationManagerDelega
     func setMapConstraints(){
         view.addSubview(mapView)
         view.backgroundColor = .white
-        
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         mapView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true

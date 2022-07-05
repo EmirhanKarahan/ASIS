@@ -14,8 +14,10 @@ protocol LiveVehicleLocationsOutPut {
 
 final class LiveVehicleLocationsViewController: UIViewController, CLLocationManagerDelegate {
     
+    private var coordinates: [CLLocationCoordinate2D] = []
+    private var routeOverlay:MKOverlay?
     private let locationManager = CLLocationManager()
-    var timer = Timer()
+    private var timer = Timer()
     private var vehicles: [Vehicle] = [] {
         didSet{
             updateVehicleLocations()
@@ -49,8 +51,12 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
         for vehicle in vehicles {
             let pin = MKPointAnnotation()
             pin.coordinate = CLLocationCoordinate2D(latitude: vehicle.latitude!, longitude: vehicle.longitude!)
+            coordinates.append(CLLocationCoordinate2D(latitude: vehicle.latitude!, longitude: vehicle.longitude!))
             mapView.addAnnotation(pin)
         }
+        self.routeOverlay = MKPolyline(coordinates: self.coordinates, count: self.coordinates.count)
+        let customEdgePadding:UIEdgeInsets = UIEdgeInsets (top: 50, left: 50, bottom: 50, right: 50)
+        self.mapView.setVisibleMapRect(self.routeOverlay!.boundingMapRect, edgePadding: customEdgePadding, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,10 +79,6 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
     
     func render(_ location: CLLocation){
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-        
         let pin = MKPointAnnotation()
         pin.title = "person"
         pin.coordinate = coordinate

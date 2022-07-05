@@ -32,7 +32,7 @@ final class HomepageViewController: UIViewController, CLLocationManagerDelegate 
         locationManager.startUpdatingLocation()
     }
     
-    // MARK: - update it, just runs once
+    // TODO: - update it, it just runs once
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             locationManager.stopUpdatingLocation()
@@ -62,8 +62,6 @@ final class HomepageViewController: UIViewController, CLLocationManagerDelegate 
         mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
     }
     
-    
-
 }
 
 extension HomepageViewController: MKMapViewDelegate{

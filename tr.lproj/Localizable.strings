@@ -30,4 +30,8 @@
 "Direction" = "Yön";
 "direction" = "yön";
 "Weird, but no routes found." = "Garip, ama rota bulunamadı.";
-"Ok"="Tamam";
+"Ok" = "Tamam";
+"Delete" = "Sil";
+"Change Direction" = "Rotayı Değiştir";
+"Focus Route" = "Rotaya Odakla";
+"Focus Me" = "Konuma Odakla";

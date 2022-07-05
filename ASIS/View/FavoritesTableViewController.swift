@@ -36,7 +36,7 @@ final class FavoritesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .normal, title: "Sil".localized) { _,_,_ in
+        let deleteAction = UIContextualAction(style: .normal, title: "Delete".localized) { _,_,_ in
             let appDelegate = UIApplication.shared.delegate as? AppDelegate
             let managedObjectContext = appDelegate?.persistentContainer.viewContext
             managedObjectContext?.delete(self.data[indexPath.row])

@@ -39,7 +39,6 @@ Launch Xcode and you are good to go.
 <img src="/screenshots/stations.png">
 <img src="/screenshots/balance.png">
 <img src="/screenshots/routes.png">
-<img src="/screenshots/route-details.png">
 <img src="/screenshots/route-detail.png">
 
 <img src="/screenshots/buses.png">

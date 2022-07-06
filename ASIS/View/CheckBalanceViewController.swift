@@ -10,24 +10,13 @@ import UIKit
 final class CheckBalanceViewController: UIViewController {
     
     let helper = NFCHelper()
-    var gestureRecognizer = UITapGestureRecognizer()
-    
     var cardIDTextField:UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        setupKeyboardHiding()
     }
-    
-    private func setupKeyboardHiding(){
-        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        gestureRecognizer.cancelsTouchesInView = false
-        view.addGestureRecognizer(gestureRecognizer)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
+   
     func configure(){
         view.backgroundColor = .white
         
@@ -115,16 +104,3 @@ final class CheckBalanceViewController: UIViewController {
     }
 
 }
-
-extension CheckBalanceViewController{
-    @objc func keyboardWillShow(sender:NSNotification){
-        view.frame.origin.y = view.frame.origin.y - 50
-    }
-    @objc func keyboardWillHide(sender:NSNotification){
-        view.frame.origin.y = 0
-    }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-

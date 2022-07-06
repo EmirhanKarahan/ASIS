@@ -9,6 +9,7 @@ target 'ASIS' do
   pod 'Alamofire'
   pod 'SideMenu', '~> 6.0'
   pod 'DropDown'
+  pod 'IQKeyboardManagerSwift'
   
   pod 'FirebaseCore'
   pod 'FirebaseAnalytics'

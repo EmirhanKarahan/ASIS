@@ -49,12 +49,12 @@ final class FavoritesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let favorite = data[indexPath.row]
+        let favorite = self.data[indexPath.row]
         let name = favorite.value(forKey: "favoriteName") as! String
-        guard let selectedService = findServiceByName(serviceName: name) else { return }
+        guard let selectedService = self.findServiceByName(serviceName: name) else { print("🟨 Couldn't find service"); return }
         let vc = RouteDetailViewController()
         vc.selectedService = selectedService
-        navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func fetch(){
@@ -66,8 +66,8 @@ final class FavoritesTableViewController: UITableViewController {
     }
     
     func findServiceByName(serviceName name:String) -> Service? {
-        if let i = services.firstIndex(where: { $0.name == name }) {
-            return services[i]
+        if let service = services.first(where: { $0.name == name }) {
+            return service
         }
         return nil
     }

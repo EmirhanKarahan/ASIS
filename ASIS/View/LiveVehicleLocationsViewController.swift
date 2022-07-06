@@ -18,6 +18,7 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
     private var routeOverlay:MKOverlay?
     private let locationManager = CLLocationManager()
     private var timer = Timer()
+    private var isSetCoordinatesMoreThanOnce:Bool = false
     private var vehicles: [Vehicle] = [] {
         didSet{
             updateVehicleLocations()
@@ -40,6 +41,7 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
         self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { _ in
             self.viewModel.fetchVehicles()
         })
+      
     }
     
     func updateVehicleLocations(){
@@ -54,9 +56,15 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
             coordinates.append(CLLocationCoordinate2D(latitude: vehicle.latitude!, longitude: vehicle.longitude!))
             mapView.addAnnotation(pin)
         }
-        self.routeOverlay = MKPolyline(coordinates: self.coordinates, count: self.coordinates.count)
-        let customEdgePadding:UIEdgeInsets = UIEdgeInsets (top: 50, left: 50, bottom: 50, right: 50)
-        self.mapView.setVisibleMapRect(self.routeOverlay!.boundingMapRect, edgePadding: customEdgePadding, animated: true)
+        
+        if !isSetCoordinatesMoreThanOnce{
+            self.routeOverlay = MKPolyline(coordinates: self.coordinates, count: self.coordinates.count)
+            let customEdgePadding:UIEdgeInsets = UIEdgeInsets (top: 50, left: 50, bottom: 50, right: 50)
+            self.mapView.setVisibleMapRect(self.routeOverlay!.boundingMapRect, edgePadding: customEdgePadding, animated: true)
+        }
+        
+        isSetCoordinatesMoreThanOnce = true
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {

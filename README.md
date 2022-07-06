@@ -32,22 +32,22 @@ Launch Xcode and you are good to go.
 ## Screenshots
 
 <p align="center">
-<img src="/screenshots/login-tr.png">
-<img src="/screenshots/register-tr.png">
-<img src="/screenshots/homepage-tr.png">
+<img src="/screenshots/login.png">
+<img src="/screenshots/register.png">
+<img src="/screenshots/homepage.png">
 
-<img src="/screenshots/bus-stops-tr.png">
-<img src="/screenshots/check-balance-en.png">
-<img src="/screenshots/routes-tr.png">
-<img src="/screenshots/route-details-tr.png">
-<img src="/screenshots/route-direction-selection-tr.png">
+<img src="/screenshots/stations.png">
+<img src="/screenshots/balance.png">
+<img src="/screenshots/routes.png">
+<img src="/screenshots/route-details.png">
+<img src="/screenshots/route-detail.png">
 
-<img src="/screenshots/buses-tr.png">
-<img src="/screenshots/side-menu-tr.png">
-<img src="/screenshots/account-settings-tr.png">
+<img src="/screenshots/buses.png">
+<img src="/screenshots/sidemenu.png">
+<img src="/screenshots/account-settings.png">
 
-<img src="/screenshots/share-app-tr.png">
-<img src="/screenshots/change-language-tr.png">
+<img src="/screenshots/share-the-app.png">
+<img src="/screenshots/change-language.png">
 </p>
 
 

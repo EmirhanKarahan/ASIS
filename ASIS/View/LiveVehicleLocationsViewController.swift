@@ -14,10 +14,9 @@ protocol LiveVehicleLocationsOutPut {
 
 final class LiveVehicleLocationsViewController: UIViewController, CLLocationManagerDelegate {
     
-    private var coordinates: [CLLocationCoordinate2D] = []
-    private var routeOverlay:MKOverlay?
     private let locationManager = CLLocationManager()
     private var timer = Timer()
+    private var busAnnotations = [MKPointAnnotation]()
     private var isSetCoordinatesMoreThanOnce:Bool = false
     private var vehicles: [Vehicle] = [] {
         didSet{
@@ -41,7 +40,6 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
         self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { _ in
             self.viewModel.fetchVehicles()
         })
-      
     }
     
     func updateVehicleLocations(){
@@ -52,19 +50,14 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
         
         for vehicle in vehicles {
             let pin = MKPointAnnotation()
-            pin.coordinate = CLLocationCoordinate2D(latitude: vehicle.latitude!, longitude: vehicle.longitude!)
-            coordinates.append(CLLocationCoordinate2D(latitude: vehicle.latitude!, longitude: vehicle.longitude!))
+            pin.coordinate = CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude)
+            pin.title = vehicle.vehicleID
             mapView.addAnnotation(pin)
         }
         
-        if !isSetCoordinatesMoreThanOnce{
-            self.routeOverlay = MKPolyline(coordinates: self.coordinates, count: self.coordinates.count)
-            let customEdgePadding:UIEdgeInsets = UIEdgeInsets (top: 50, left: 50, bottom: 50, right: 50)
-            self.mapView.setVisibleMapRect(self.routeOverlay!.boundingMapRect, edgePadding: customEdgePadding, animated: true)
-        }
-        
+        if isSetCoordinatesMoreThanOnce { return }
+        mapView.showAnnotations(mapView.annotations, animated: true)
         isSetCoordinatesMoreThanOnce = true
-       
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,7 +67,6 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
     }
-
     
     // MARK: - update, just runs once
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -83,7 +75,6 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
             render(location)
         }
     }
-    
     
     func render(_ location: CLLocation){
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)

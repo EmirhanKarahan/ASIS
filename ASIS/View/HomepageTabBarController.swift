@@ -16,7 +16,6 @@ final class HomepageTabBarController: UITabBarController {
         addViewControllersToTabBar()
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "burger-menu"), style: .plain, target: self, action: #selector(openSideMenu))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "favorites"), style: .plain, target: self, action: #selector(openFavorites))
-        self.tabBarController?.tabBar.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     }
     
     @objc func openSideMenu(){

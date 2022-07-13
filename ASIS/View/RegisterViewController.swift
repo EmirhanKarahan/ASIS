@@ -76,10 +76,23 @@ final class RegisterViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         passwordAgainTextField.isSecureTextEntry = true
     }
+    
+    func assignbackground(){
+          let background = UIImage(named: "background")
+          var imageView : UIImageView!
+          imageView = UIImageView(frame: view.bounds)
+          imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+          imageView.clipsToBounds = true
+          imageView.image = background
+          imageView.center = view.center
+          view.addSubview(imageView)
+          self.view.sendSubviewToBack(imageView)
+      }
 
     
     func configure(){
         view.backgroundColor = .white
+        assignbackground()
         
         signUpLabel = UILabel()
         signUpLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -90,6 +103,7 @@ final class RegisterViewController: UIViewController {
         
         redirectToSignInButton = UIButton(type: .system)
         redirectToSignInButton.translatesAutoresizingMaskIntoConstraints = false
+        redirectToSignInButton.setTitleColor(.white, for: .normal)
         redirectToSignInButton.setTitle("Already Member? Login".localized, for: .normal)
         redirectToSignInButton.addTarget(self, action: #selector(redirectToSignIn), for: .touchUpInside)
         view.addSubview(redirectToSignInButton)
@@ -173,6 +187,7 @@ final class RegisterViewController: UIViewController {
         signUpButton.layer.cornerRadius = 6
         signUpButton.backgroundColor = UIColor(red: 47/255, green: 128/255, blue: 237/255, alpha: 1)
         signUpButton.layer.borderColor = UIColor.white.cgColor
+        signUpButton.layer.borderWidth = 1
         signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
         view.addSubview(signUpButton)
         
@@ -214,7 +229,7 @@ final class RegisterViewController: UIViewController {
             errorLabel.leadingAnchor.constraint(equalTo: passwordAgainTextField.leadingAnchor),
             errorLabel.widthAnchor.constraint(equalTo: passwordAgainTextField.widthAnchor),
             
-            signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             signUpButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             signUpButton.widthAnchor.constraint(equalToConstant: 130),
             signUpButton.heightAnchor.constraint(equalToConstant: 60),

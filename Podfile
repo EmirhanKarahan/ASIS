@@ -10,6 +10,7 @@ target 'ASIS' do
   pod 'SideMenu', '~> 6.0'
   pod 'DropDown'
   pod 'IQKeyboardManagerSwift'
+  pod 'Gifu'
   
   pod 'FirebaseCore'
   pod 'FirebaseAnalytics'

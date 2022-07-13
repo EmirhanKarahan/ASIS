@@ -10,6 +10,21 @@
 		1E12D43F286AD64D00E8A57B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E12D43E286AD64D00E8A57B /* String+Extensions.swift */; };
 		1E12D443286AD75800E8A57B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1E12D445286AD75800E8A57B /* Localizable.strings */; };
 		1E12D449286AF22000E8A57B /* NFCHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E12D448286AF22000E8A57B /* NFCHelper.swift */; };
+		1E321B472876C43500F88F32 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B462876C43500F88F32 /* background.png */; };
+		1E321B492876C63100F88F32 /* welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B482876C63000F88F32 /* welcome.png */; };
+		1E321B552876D38B00F88F32 /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E321B542876D38B00F88F32 /* WalkthroughViewController.swift */; };
+		1E321B69287707EA00F88F32 /* route-animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B64287707EA00F88F32 /* route-animated.gif */; };
+		1E321B6A287707EA00F88F32 /* balance-animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B65287707EA00F88F32 /* balance-animated.gif */; };
+		1E321B6B287707EA00F88F32 /* bus-animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B66287707EA00F88F32 /* bus-animated.gif */; };
+		1E321B6C287707EA00F88F32 /* school-bus-animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B67287707EA00F88F32 /* school-bus-animated.gif */; };
+		1E321B6D287707EA00F88F32 /* home-animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B68287707EA00F88F32 /* home-animated.gif */; };
+		1E321B73287708DA00F88F32 /* Walk 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B6E287708DA00F88F32 /* Walk 2.png */; };
+		1E321B74287708DA00F88F32 /* Walk 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B6F287708DA00F88F32 /* Walk 4.png */; };
+		1E321B75287708DA00F88F32 /* Walk 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B70287708DA00F88F32 /* Walk 5.png */; };
+		1E321B76287708DA00F88F32 /* Walk 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B71287708DA00F88F32 /* Walk 1.png */; };
+		1E321B77287708DA00F88F32 /* Walk 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B72287708DA00F88F32 /* Walk 3.png */; };
+		1E321B792877093D00F88F32 /* slide-animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B782877093C00F88F32 /* slide-animated.gif */; };
+		1E321B7B287724E200F88F32 /* balloons-animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1E321B7A287724E200F88F32 /* balloons-animated.gif */; };
 		1E326DE4286DE14E00AA6EB2 /* BusServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E326DE3286DE14E00AA6EB2 /* BusServices.swift */; };
 		1E326DE6286DE23E00AA6EB2 /* BusServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E326DE5286DE23E00AA6EB2 /* BusServicesViewModel.swift */; };
 		1E326DE8286DE2A800AA6EB2 /* BusServicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E326DE7286DE2A800AA6EB2 /* BusServicesService.swift */; };
@@ -39,6 +54,7 @@
 		1E7EE061286C45AC00099938 /* BusStationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7EE060286C45AC00099938 /* BusStationsViewModel.swift */; };
 		1E7EE063286C639C00099938 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7EE062286C639C00099938 /* SideMenuTableViewController.swift */; };
 		1E7EE065286C742100099938 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E7EE064286C742100099938 /* GoogleService-Info.plist */; };
+		1EC7C5CA2878184C00E77614 /* BusAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC7C5C92878184C00E77614 /* BusAnnotation.swift */; };
 		1EDB7AEE2872DFD300B511DD /* ASIS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB7AEC2872DFD300B511DD /* ASIS.xcdatamodeld */; };
 		1EDB7AF02872FFD400B511DD /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB7AEF2872FFD400B511DD /* FavoritesTableViewController.swift */; };
 		E5A5F288E7BA69A94B787446 /* Pods_ASIS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402C85286506A38AE4B36281 /* Pods_ASIS.framework */; };
@@ -50,6 +66,21 @@
 		1E12D444286AD75800E8A57B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1E12D446286AD75D00E8A57B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1E12D448286AF22000E8A57B /* NFCHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCHelper.swift; sourceTree = "<group>"; };
+		1E321B462876C43500F88F32 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		1E321B482876C63000F88F32 /* welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome.png; sourceTree = "<group>"; };
+		1E321B542876D38B00F88F32 /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
+		1E321B64287707EA00F88F32 /* route-animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "route-animated.gif"; sourceTree = "<group>"; };
+		1E321B65287707EA00F88F32 /* balance-animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "balance-animated.gif"; sourceTree = "<group>"; };
+		1E321B66287707EA00F88F32 /* bus-animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "bus-animated.gif"; sourceTree = "<group>"; };
+		1E321B67287707EA00F88F32 /* school-bus-animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "school-bus-animated.gif"; sourceTree = "<group>"; };
+		1E321B68287707EA00F88F32 /* home-animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "home-animated.gif"; sourceTree = "<group>"; };
+		1E321B6E287708DA00F88F32 /* Walk 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Walk 2.png"; sourceTree = "<group>"; };
+		1E321B6F287708DA00F88F32 /* Walk 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Walk 4.png"; sourceTree = "<group>"; };
+		1E321B70287708DA00F88F32 /* Walk 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Walk 5.png"; sourceTree = "<group>"; };
+		1E321B71287708DA00F88F32 /* Walk 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Walk 1.png"; sourceTree = "<group>"; };
+		1E321B72287708DA00F88F32 /* Walk 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Walk 3.png"; sourceTree = "<group>"; };
+		1E321B782877093C00F88F32 /* slide-animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "slide-animated.gif"; sourceTree = "<group>"; };
+		1E321B7A287724E200F88F32 /* balloons-animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "balloons-animated.gif"; sourceTree = "<group>"; };
 		1E326DE3286DE14E00AA6EB2 /* BusServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusServices.swift; sourceTree = "<group>"; };
 		1E326DE5286DE23E00AA6EB2 /* BusServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusServicesViewModel.swift; sourceTree = "<group>"; };
 		1E326DE7286DE2A800AA6EB2 /* BusServicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusServicesService.swift; sourceTree = "<group>"; };
@@ -81,6 +112,7 @@
 		1E7EE060286C45AC00099938 /* BusStationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStationsViewModel.swift; sourceTree = "<group>"; };
 		1E7EE062286C639C00099938 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		1E7EE064286C742100099938 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1EC7C5C92878184C00E77614 /* BusAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAnnotation.swift; sourceTree = "<group>"; };
 		1EDB7AED2872DFD300B511DD /* ASIS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ASIS.xcdatamodel; sourceTree = "<group>"; };
 		1EDB7AEF2872FFD400B511DD /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		24F990D64B42524131244907 /* Pods-ASIS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASIS.debug.xcconfig"; path = "Target Support Files/Pods-ASIS/Pods-ASIS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +161,7 @@
 		1E6793AA2869971C00ADEE4B = {
 			isa = PBXGroup;
 			children = (
+				1EEF26B52875DA72005F8558 /* Images */,
 				1E6793B52869971C00ADEE4B /* ASIS */,
 				1E7EE064286C742100099938 /* GoogleService-Info.plist */,
 				1E12D445286AD75800E8A57B /* Localizable.strings */,
@@ -166,6 +199,7 @@
 				1E62B763286B318800CD9F08 /* LiveVehicleLocation.swift */,
 				1E7EE05E286C452600099938 /* BusStops.swift */,
 				1E326DE3286DE14E00AA6EB2 /* BusServices.swift */,
+				1EC7C5C92878184C00E77614 /* BusAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +215,7 @@
 				1E6793F02869ED3A00ADEE4B /* AppNavigationController.swift */,
 				1E7EE062286C639C00099938 /* SideMenuTableViewController.swift */,
 				1EDB7AEF2872FFD400B511DD /* FavoritesTableViewController.swift */,
+				1E321B542876D38B00F88F32 /* WalkthroughViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,6 +273,27 @@
 				1E6793F42869F60400ADEE4B /* RegisterViewController.swift */,
 			);
 			name = Auth;
+			sourceTree = "<group>";
+		};
+		1EEF26B52875DA72005F8558 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1E321B462876C43500F88F32 /* background.png */,
+				1E321B482876C63000F88F32 /* welcome.png */,
+				1E321B65287707EA00F88F32 /* balance-animated.gif */,
+				1E321B66287707EA00F88F32 /* bus-animated.gif */,
+				1E321B68287707EA00F88F32 /* home-animated.gif */,
+				1E321B64287707EA00F88F32 /* route-animated.gif */,
+				1E321B67287707EA00F88F32 /* school-bus-animated.gif */,
+				1E321B782877093C00F88F32 /* slide-animated.gif */,
+				1E321B7A287724E200F88F32 /* balloons-animated.gif */,
+				1E321B71287708DA00F88F32 /* Walk 1.png */,
+				1E321B6E287708DA00F88F32 /* Walk 2.png */,
+				1E321B72287708DA00F88F32 /* Walk 3.png */,
+				1E321B6F287708DA00F88F32 /* Walk 4.png */,
+				1E321B70287708DA00F88F32 /* Walk 5.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		26D6CE67C83499E50E85684A /* Pods */ = {
@@ -319,10 +375,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E321B492876C63100F88F32 /* welcome.png in Resources */,
 				1E6793C62869971D00ADEE4B /* LaunchScreen.storyboard in Resources */,
+				1E321B792877093D00F88F32 /* slide-animated.gif in Resources */,
+				1E321B73287708DA00F88F32 /* Walk 2.png in Resources */,
+				1E321B75287708DA00F88F32 /* Walk 5.png in Resources */,
+				1E321B472876C43500F88F32 /* background.png in Resources */,
+				1E321B6A287707EA00F88F32 /* balance-animated.gif in Resources */,
+				1E321B7B287724E200F88F32 /* balloons-animated.gif in Resources */,
+				1E321B6C287707EA00F88F32 /* school-bus-animated.gif in Resources */,
+				1E321B74287708DA00F88F32 /* Walk 4.png in Resources */,
 				1E7EE065286C742100099938 /* GoogleService-Info.plist in Resources */,
+				1E321B69287707EA00F88F32 /* route-animated.gif in Resources */,
 				1E12D443286AD75800E8A57B /* Localizable.strings in Resources */,
+				1E321B6B287707EA00F88F32 /* bus-animated.gif in Resources */,
+				1E321B76287708DA00F88F32 /* Walk 1.png in Resources */,
+				1E321B6D287707EA00F88F32 /* home-animated.gif in Resources */,
 				1E6793C32869971D00ADEE4B /* Assets.xcassets in Resources */,
+				1E321B77287708DA00F88F32 /* Walk 3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,12 +476,14 @@
 				1E7EE05A286C43F200099938 /* BusStationsService.swift in Sources */,
 				1E62B768286B399400CD9F08 /* LiveVehicleLocationsViewModel.swift in Sources */,
 				1E326DE8286DE2A800AA6EB2 /* BusServicesService.swift in Sources */,
+				1E321B552876D38B00F88F32 /* WalkthroughViewController.swift in Sources */,
 				1E6793E62869E94D00ADEE4B /* RoutesViewController.swift in Sources */,
 				1E326DE6286DE23E00AA6EB2 /* BusServicesViewModel.swift in Sources */,
 				1E6793B72869971C00ADEE4B /* AppDelegate.swift in Sources */,
 				1E7EE05C286C441200099938 /* Endpoints.swift in Sources */,
 				1E326DE4286DE14E00AA6EB2 /* BusServices.swift in Sources */,
 				1E6793B92869971C00ADEE4B /* SceneDelegate.swift in Sources */,
+				1EC7C5CA2878184C00E77614 /* BusAnnotation.swift in Sources */,
 				1E6793DA2869C8FF00ADEE4B /* LanguagePreferencesViewController.swift in Sources */,
 				1E6793D62869C8A700ADEE4B /* HomepageViewController.swift in Sources */,
 				1E6793F52869F60400ADEE4B /* RegisterViewController.swift in Sources */,

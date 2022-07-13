@@ -19,12 +19,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.overrideUserInterfaceStyle = .light
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
+        
+        let isWalkthroughSeenBefore = UserDefaults.standard.bool(forKey: "isWalkthroughSeenBefore")
+            
         if FirebaseAuth.Auth.auth().currentUser != nil {
             window?.rootViewController = AppNavigationController()
         }
-        else{
+        else if !isWalkthroughSeenBefore{
+            window?.rootViewController = WalkthroughViewController()
+        }
+        else {
             window?.rootViewController = LoginViewController()
         }
+    
         window?.makeKeyAndVisible()
     }
 

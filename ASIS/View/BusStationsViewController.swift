@@ -15,8 +15,6 @@ protocol BusStationsOutPut {
 final class BusStationsViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    var coordinates: [CLLocationCoordinate2D] = []
-    var routeOverlay:MKOverlay?
     
     lazy var viewModel:BusStationsViewModel = BusStationsViewModel()
     
@@ -30,12 +28,11 @@ final class BusStationsViewController: UIViewController, CLLocationManagerDelega
             for stop in stops {
                 let pin = MKPointAnnotation()
                 pin.coordinate = CLLocationCoordinate2D(latitude: stop.latitude!, longitude: stop.longitude!)
-                coordinates.append(CLLocationCoordinate2D(latitude: stop.latitude!, longitude: stop.longitude!))
+                
                 mapView.addAnnotation(pin)
             }
-            self.routeOverlay = MKPolyline(coordinates: self.coordinates, count: self.coordinates.count)
-            let customEdgePadding:UIEdgeInsets = UIEdgeInsets (top: 50, left: 50, bottom: 50, right: 50)
-            self.mapView.setVisibleMapRect(self.routeOverlay!.boundingMapRect, edgePadding: customEdgePadding, animated: true)
+            
+            mapView.showAnnotations(mapView.annotations, animated: true)
         }
     }
     

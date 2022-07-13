@@ -48,6 +48,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (~> 2.1)
+  - Gifu (3.3.1)
   - GoogleAppMeasurement (9.2.0):
     - GoogleAppMeasurement/AdIdSupport (= 9.2.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
@@ -108,6 +109,7 @@ DEPENDENCIES:
   - FirebaseAuth
   - FirebaseCore
   - FirebaseCrashlytics
+  - Gifu
   - IQKeyboardManagerSwift
   - SideMenu (~> 6.0)
 
@@ -122,6 +124,7 @@ SPEC REPOS:
     - FirebaseCoreInternal
     - FirebaseCrashlytics
     - FirebaseInstallations
+    - Gifu
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
@@ -141,6 +144,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: cb966328b6985dbd6f535e1461291063e1c4a00f
   FirebaseCrashlytics: 9fff819edb2bfc9d3eff612225b207d41945a935
   FirebaseInstallations: 21186f0ca7849f90f4a3219fa31a5eca2e30f113
+  Gifu: 416d4e38c4c2fed012f019e0a1d3ffcb58e5b842
   GoogleAppMeasurement: 7a33224321f975d58c166657260526775d9c6b1a
   GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
@@ -150,6 +154,6 @@ SPEC CHECKSUMS:
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: d2d1aac58a41b83d0705b44f4bbce667cea077a6
+PODFILE CHECKSUM: acebba46490aa32b80d76e9fea1af21d4f262350
 
 COCOAPODS: 1.11.3

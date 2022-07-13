@@ -19,8 +19,8 @@ final class LoginViewController: UIViewController {
     private var signInButton:UIButton!
     private var errorLabel:UILabel!
     private var passwordToggleButton:UIButton!
-    
     private var redirectToSignUpButton:UIButton!
+    
     var gestureRecognizer = UITapGestureRecognizer()
     
     override func viewDidLoad() {
@@ -70,11 +70,23 @@ final class LoginViewController: UIViewController {
         passwordToggleButton.setImage(UIImage(named: "eye-closed"), for: .normal)
         passwordTextField.isSecureTextEntry = true
     }
+    
+    func assignbackground(){
+          let background = UIImage(named: "background")
+          var imageView : UIImageView!
+          imageView = UIImageView(frame: view.bounds)
+          imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+          imageView.clipsToBounds = true
+          imageView.image = background
+          imageView.center = view.center
+          view.addSubview(imageView)
+          self.view.sendSubviewToBack(imageView)
+      }
 
     
     func configure(){
         view.backgroundColor = .white
-      //  view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
+        assignbackground()
         
         signInLabel = UILabel()
         signInLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +97,7 @@ final class LoginViewController: UIViewController {
         
         redirectToSignUpButton = UIButton(type: .system)
         redirectToSignUpButton.translatesAutoresizingMaskIntoConstraints = false
+        redirectToSignUpButton.setTitleColor(.white, for: .normal)
         redirectToSignUpButton.setTitle("New Here? Register".localized, for: .normal)
         redirectToSignUpButton.addTarget(self, action: #selector(redirectToSignUp), for: .touchUpInside)
         view.addSubview(redirectToSignUpButton)
@@ -143,6 +156,7 @@ final class LoginViewController: UIViewController {
         signInButton.setTitle("Login".localized, for: .normal)
         signInButton.layer.cornerRadius = 6
         signInButton.backgroundColor = UIColor(red: 47/255, green: 128/255, blue: 237/255, alpha: 1)
+        signInButton.layer.borderWidth = 1
         signInButton.layer.borderColor = UIColor.white.cgColor
         signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
         view.addSubview(signInButton)
@@ -174,14 +188,13 @@ final class LoginViewController: UIViewController {
             errorLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
             errorLabel.widthAnchor.constraint(equalTo: passwordTextField.widthAnchor),
             
-            signInButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            signInButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             signInButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             signInButton.widthAnchor.constraint(equalToConstant: 130),
             signInButton.heightAnchor.constraint(equalToConstant: 60),
             
             redirectToSignUpButton.bottomAnchor.constraint(equalTo: signInButton.bottomAnchor),
             redirectToSignUpButton.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
-            
         ])
         
     }

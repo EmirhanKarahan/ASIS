@@ -16,7 +16,8 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
     
     private let locationManager = CLLocationManager()
     private var timer = Timer()
-    private var busAnnotations = [MKPointAnnotation]()
+    private var busAnnotations = [BusAnnotation]()
+    private var personAnnotation:MKPointAnnotation!
     private var isSetCoordinatesMoreThanOnce:Bool = false
     private var vehicles: [Vehicle] = [] {
         didSet{
@@ -43,19 +44,22 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
     }
     
     func updateVehicleLocations(){
-        let annotations = mapView.annotations.filter {
-            $0.title != "person"
+        for annotation in busAnnotations {
+            UIView.animate(withDuration: 0.5) { [self] in
+                if let vehicle = self.vehicles.first(where: { $0.vehicleID == annotation.vehicleID }) {
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude)
+                }
+            }
         }
-        mapView.removeAnnotations(annotations)
+
+       if isSetCoordinatesMoreThanOnce { return }
         
         for vehicle in vehicles {
-            let pin = MKPointAnnotation()
-            pin.coordinate = CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude)
-            pin.title = vehicle.vehicleID
-            mapView.addAnnotation(pin)
+            let pin = BusAnnotation(coordinate: CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude), vehicleID: vehicle.vehicleID)
+            busAnnotations.append(pin)
         }
         
-        if isSetCoordinatesMoreThanOnce { return }
+        mapView.addAnnotations(busAnnotations)
         mapView.showAnnotations(mapView.annotations, animated: true)
         isSetCoordinatesMoreThanOnce = true
     }
@@ -78,10 +82,10 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
     
     func render(_ location: CLLocation){
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let pin = MKPointAnnotation()
-        pin.title = "person"
-        pin.coordinate = coordinate
-        mapView.addAnnotation(pin)
+        personAnnotation = MKPointAnnotation()
+        personAnnotation.title = "person"
+        personAnnotation.coordinate = coordinate
+        mapView.addAnnotation(personAnnotation)
     }
     
     func setMapConstraints(){

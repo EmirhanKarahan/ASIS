@@ -32,8 +32,7 @@ Launch Xcode and you are good to go.
 ## Screenshots
 
 <p align="center">
-<img src="/screenshots/login.png">
-<img src="/screenshots/register.png">
+<img src="/screenshots/walk.gif">
 <img src="/screenshots/homepage.png">
 
 <img src="/screenshots/stations.png">

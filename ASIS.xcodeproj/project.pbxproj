@@ -209,8 +209,7 @@
 			children = (
 				1E6793F62869F61800ADEE4B /* Auth */,
 				1E6793EA2869E9AB00ADEE4B /* Home */,
-				1E6793D72869C8DD00ADEE4B /* AccountSettingsViewController.swift */,
-				1E6793D92869C8FF00ADEE4B /* LanguagePreferencesViewController.swift */,
+				1E9F6FF22885423C00F1C48D /* Left Sidebar */,
 				1E6793DF2869DB7D00ADEE4B /* HomepageTabBarController.swift */,
 				1E6793F02869ED3A00ADEE4B /* AppNavigationController.swift */,
 				1E7EE062286C639C00099938 /* SideMenuTableViewController.swift */,
@@ -273,6 +272,15 @@
 				1E6793F42869F60400ADEE4B /* RegisterViewController.swift */,
 			);
 			name = Auth;
+			sourceTree = "<group>";
+		};
+		1E9F6FF22885423C00F1C48D /* Left Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				1E6793D72869C8DD00ADEE4B /* AccountSettingsViewController.swift */,
+				1E6793D92869C8FF00ADEE4B /* LanguagePreferencesViewController.swift */,
+			);
+			name = "Left Sidebar";
 			sourceTree = "<group>";
 		};
 		1EEF26B52875DA72005F8558 /* Images */ = {

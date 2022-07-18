@@ -12,7 +12,7 @@ public extension String {
 
     var localized: String {
            if let _ = UserDefaults.standard.string(forKey: "i18n_language") {} else {
-               UserDefaults.standard.set("en", forKey: "i18n_language")
+               UserDefaults.standard.set("tr", forKey: "i18n_language")
                UserDefaults.standard.synchronize()
            }
 
@@ -23,5 +23,4 @@ public extension String {
 
            return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
        }
-
 }

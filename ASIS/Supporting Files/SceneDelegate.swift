@@ -23,10 +23,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let isWalkthroughSeenBefore = UserDefaults.standard.bool(forKey: "isWalkthroughSeenBefore")
             
         if !isWalkthroughSeenBefore {
-            window?.rootViewController = AppNavigationController()
+            window?.rootViewController = WalkthroughViewController()
         }
         else if FirebaseAuth.Auth.auth().currentUser != nil {
-            window?.rootViewController = WalkthroughViewController()
+            window?.rootViewController = AppNavigationController()
         }
         else {
             window?.rootViewController = LoginViewController()

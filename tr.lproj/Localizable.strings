@@ -11,13 +11,17 @@
 "Dealers" = "Bayiler"  ;
 "Busses" = "Otobüsler";
 "Routes" = "Rotalar";
+
 "Password" = "Parola";
 "Password again" = "Tekrar parola";
 "Reset Password" = "Parolayı Sıfırla";
-"Don't you have an account?" = "Bir hesabınız yok mu?";
-"Do you have an account already?" = "Zaten bir hesabınız var mı?";
+"Already Member? Login" = "Üye misiniz? Giriş Yapın";
+"Register" = "Kayıt Ol";
+"New Here? Register" = "Yeni misiniz? Kayıt Olun";
+"Login" = "Giriş";
 "Sign Up" = "Kayıt Ol";
 "Sign In" = "Giriş Yap";
+
 "Change Language" = "Dil Değiştir";
 "Account Settings" = "Hesap Ayarları";
 "Share the App" = "Uygulamayı Paylaş";
@@ -35,7 +39,20 @@
 "Change Direction" = "Rotayı Değiştir";
 "Focus Route" = "Rotaya Odakla";
 "Focus Me" = "Konuma Odakla";
-"Already Member? Login" = "Üye misiniz? Giriş Yapın";
-"Register" = "Kayıt Ol";
-"New Here? Register" = "Yeni misiniz? Kayıt Olun";
-"Login" = "Giriş";
+"Card Number !" = "Kart Numarası !";
+
+"Welcome" = "Hoşgeldiniz";
+"Homepage" = "Anasafya";
+"Bus Stops" = "Otobüs Durakları";
+"Balance" = "Bakiye";
+"Routes" = "Rotalar";
+"Bus Locations" = "Otobüs Konumları";
+"You can see your current location on the map" = "Mevcut konumunuzu haritada görebilirsiniz";
+"Welcome to ASIS Demo, swipe left to discover amazing features" = "ASIS Demo'ya Hoşgeldiniz, harika özellikleri keşfetmek için kaydırın";
+"You can see bus stops on the map" = "Otobüs duraklarını haritada görebilirsiniz";
+"You can see your card balance" = "Kart bakiyenizi sorgulayabilirsiniz";
+"You can list all routes and see details about them" = "Tüm rotaları listeleyebilir ve detaylarını görebilirsiniz";
+"You can see live bus locations" = "Canlı otobüs konumlarını görebilirsiniz";
+
+"Scanning Not Supported" = "Tarama Desteklenmiyor";
+"This device doesn't support tag scanning." = "Bu cihaz kart taramayı desteklemiyor.";

@@ -12,7 +12,6 @@ class WalkthroughViewController: UIViewController {
     private var imageView:UIImageView!
     private var fromleftSwipeRecognizer:UISwipeGestureRecognizer!
     private var fromRightSwipeRecognizer:UISwipeGestureRecognizer!
-    private var dots:UIPageControl!
     private var walkthroughTitleLabel:UILabel!
     private var walkthroughInfoLabel:UILabel!
     private var gifView:GIFImageView!
@@ -22,7 +21,6 @@ class WalkthroughViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configure()
     }
     
@@ -72,33 +70,33 @@ class WalkthroughViewController: UIViewController {
         case 0:
             imageView.image = nil
             gifView.animate(withGIFNamed: "balloons-animated")
-            walkthroughInfoLabel.text = "Welcome to ASIS Demo, swipe left to discover amazing features"
-            walkthroughTitleLabel.text = "Welcome"
+            walkthroughInfoLabel.text = "Welcome to ASIS Demo, swipe left to discover amazing features".localized
+            walkthroughTitleLabel.text = "Welcome".localized
         case 1:
             imageView.image = UIImage(named: "Walk 1")
             gifView.animate(withGIFNamed: "home-animated")
-            walkthroughInfoLabel.text = "You can see your current location on the map"
-            walkthroughTitleLabel.text = "Homepage"
+            walkthroughInfoLabel.text = "You can see your current location on the map".localized
+            walkthroughTitleLabel.text = "Homepage".localized
         case 2:
             imageView.image = UIImage(named:"Walk 2")
             gifView.animate(withGIFNamed: "school-bus-animated")
-            walkthroughInfoLabel.text = "You can see bus stops on the map"
-            walkthroughTitleLabel.text = "Bus Stops"
+            walkthroughInfoLabel.text = "You can see bus stops on the map".localized
+            walkthroughTitleLabel.text = "Bus Stops".localized
         case 3:
             imageView.image = UIImage(named:"Walk 3")
             gifView.animate(withGIFNamed: "balance-animated")
-            walkthroughInfoLabel.text = "You can see your card balance"
-            walkthroughTitleLabel.text = "Balance"
+            walkthroughInfoLabel.text = "You can see your card balance".localized
+            walkthroughTitleLabel.text = "Balance".localized
         case 4:
             imageView.image = UIImage(named:"Walk 4")
             gifView.animate(withGIFNamed: "route-animated")
-            walkthroughInfoLabel.text = "You can list all routes and see details about them"
-            walkthroughTitleLabel.text = "Routes"
+            walkthroughInfoLabel.text = "You can list all routes and see details about them".localized
+            walkthroughTitleLabel.text = "Routes".localized
         case 5:
             imageView.image = UIImage(named:"Walk 5")
             gifView.animate(withGIFNamed: "bus-animated")
-            walkthroughInfoLabel.text = "You can see live bus locations"
-            walkthroughTitleLabel.text = "Bus Locations"
+            walkthroughInfoLabel.text = "You can see live bus locations".localized
+            walkthroughTitleLabel.text = "Bus Locations".localized
         case 6:
             UserDefaults.standard.set(true, forKey: "isWalkthroughSeenBefore")
             UIApplication.shared.windows.first?.rootViewController = LoginViewController()
@@ -112,7 +110,7 @@ class WalkthroughViewController: UIViewController {
         
         walkthroughTitleLabel = UILabel()
         walkthroughTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        walkthroughTitleLabel.text = "Welcome"
+        walkthroughTitleLabel.text = "Welcome".localized
         walkthroughTitleLabel.textAlignment = .center
         walkthroughTitleLabel.font = .systemFont(ofSize: 36, weight: .semibold)
         view.addSubview(walkthroughTitleLabel)
@@ -134,15 +132,10 @@ class WalkthroughViewController: UIViewController {
         slideGifView.translatesAutoresizingMaskIntoConstraints = false
         slideGifView.animate(withGIFNamed: "slide-animated")
         view.addSubview(slideGifView)
-       
-        
-        dots = UIPageControl()
-        dots.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(dots)
         
         walkthroughInfoLabel = UILabel()
         walkthroughInfoLabel.translatesAutoresizingMaskIntoConstraints = false
-        walkthroughInfoLabel.text = "Welcome to ASIS Demo, swipe left to discover amazing features"
+        walkthroughInfoLabel.text = "Welcome to ASIS Demo, swipe left to discover amazing features".localized
         walkthroughInfoLabel.numberOfLines = 3
         walkthroughInfoLabel.textAlignment = .center
         walkthroughInfoLabel.font = .systemFont(ofSize: 24, weight: .semibold)
@@ -174,9 +167,6 @@ class WalkthroughViewController: UIViewController {
             slideGifView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             slideGifView.widthAnchor.constraint(equalToConstant: 50),
             slideGifView.heightAnchor.constraint(equalToConstant: 50),
-            
-            dots.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
-            dots.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
             
             walkthroughInfoLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
             walkthroughInfoLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),

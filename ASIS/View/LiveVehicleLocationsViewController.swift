@@ -44,25 +44,44 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
     }
     
     func updateVehicleLocations(){
-        for annotation in busAnnotations {
-            UIView.animate(withDuration: 0.5) { [self] in
-                if let vehicle = self.vehicles.first(where: { $0.vehicleID == annotation.vehicleID }) {
-                    annotation.coordinate = CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude)
-                }
-            }
+        let annotations = mapView.annotations.filter {
+            $0.title != "person"
         }
-
-       if isSetCoordinatesMoreThanOnce { return }
+        mapView.removeAnnotations(annotations)
         
         for vehicle in vehicles {
-            let pin = BusAnnotation(coordinate: CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude), vehicleID: vehicle.vehicleID)
-            busAnnotations.append(pin)
+            let pin = MKPointAnnotation()
+            pin.coordinate = CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude)
+            pin.title = vehicle.vehicleID
+            mapView.addAnnotation(pin)
         }
         
-        mapView.addAnnotations(busAnnotations)
+        if isSetCoordinatesMoreThanOnce { return }
         mapView.showAnnotations(mapView.annotations, animated: true)
         isSetCoordinatesMoreThanOnce = true
     }
+    
+//    MARK: - Above func deletes and adds buses, to fix that I made that func below but it's not working
+//    func updateVehicleLocations(){
+//        for annotation in busAnnotations {
+//            UIView.animate(withDuration: 0.5) { [self] in
+//                if let vehicle = self.vehicles.first(where: { $0.vehicleID == annotation.vehicleID }) {
+//                    annotation.coordinate = CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude)
+//                }
+//            }
+//        }
+//
+//       if isSetCoordinatesMoreThanOnce { return }
+//
+//        for vehicle in vehicles {
+//            let pin = BusAnnotation(coordinate: CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude), vehicleID: vehicle.vehicleID)
+//            busAnnotations.append(pin)
+//        }
+//
+//        mapView.addAnnotations(busAnnotations)
+//        mapView.showAnnotations(mapView.annotations, animated: true)
+//        isSetCoordinatesMoreThanOnce = true
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

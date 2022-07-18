@@ -11,16 +11,89 @@ final class CheckBalanceViewController: UIViewController {
     
     let helper = NFCHelper()
     var cardIDTextField:UITextField!
-
+    var cardIDLabel:UILabel!
+    
+    var balanceLabel: UILabel!
+    var balanceResultLabel : UILabel!
+    var cardIDTextLabel : UILabel!
+    var cardIDResultLabel : UILabel!
+    var lastUsageLabel : UILabel!
+    var lastUsageResultLabel : UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        configureResults()
     }
-   
+    
+    func configureResults(){
+        balanceLabel = UILabel()
+        balanceLabel.translatesAutoresizingMaskIntoConstraints = false
+        balanceLabel.text = "Balance:".localized
+        balanceLabel.font = UIFont.systemFont(ofSize: 18)
+        
+        balanceResultLabel = UILabel()
+        balanceResultLabel.translatesAutoresizingMaskIntoConstraints = false
+        balanceResultLabel.font = UIFont.systemFont(ofSize: 18)
+       
+        cardIDTextLabel = UILabel()
+        cardIDTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        cardIDTextLabel.text = "Card ID:".localized
+        cardIDTextLabel.font = UIFont.systemFont(ofSize: 18)
+       
+        cardIDResultLabel = UILabel()
+        cardIDResultLabel.translatesAutoresizingMaskIntoConstraints = false
+        cardIDResultLabel.font = UIFont.systemFont(ofSize: 18)
+        
+        lastUsageLabel = UILabel()
+        lastUsageLabel.translatesAutoresizingMaskIntoConstraints = false
+        lastUsageLabel.text = "Last Usage:".localized
+        lastUsageLabel.font = UIFont.systemFont(ofSize: 18)
+       
+        lastUsageResultLabel = UILabel()
+        lastUsageResultLabel.translatesAutoresizingMaskIntoConstraints = false
+        lastUsageResultLabel.text = "19.05.2021 - Kutahya"
+        lastUsageResultLabel.font = UIFont.systemFont(ofSize: 18)
+        
+        lastUsageResultLabel.isHidden = true
+        balanceLabel.isHidden = true
+        balanceResultLabel.isHidden = true
+        cardIDTextLabel.isHidden = true
+        cardIDResultLabel.isHidden = true
+        lastUsageLabel.isHidden = true
+        
+        view.addSubview(lastUsageResultLabel)
+        view.addSubview(balanceLabel)
+        view.addSubview(balanceResultLabel)
+        view.addSubview(cardIDTextLabel)
+        view.addSubview(cardIDResultLabel)
+        view.addSubview(lastUsageLabel)
+        
+        NSLayoutConstraint.activate([
+            lastUsageLabel.bottomAnchor.constraint(equalTo: cardIDLabel.topAnchor, constant: -30),
+            lastUsageLabel.leadingAnchor.constraint(equalTo: cardIDLabel.leadingAnchor, constant: 30),
+            
+            lastUsageResultLabel.leadingAnchor.constraint(equalTo: lastUsageLabel.trailingAnchor, constant: 5),
+            lastUsageResultLabel.centerYAnchor.constraint(equalTo: lastUsageLabel.centerYAnchor),
+            
+            cardIDTextLabel.bottomAnchor.constraint(equalTo: lastUsageLabel.topAnchor, constant: -15),
+            cardIDTextLabel.leadingAnchor.constraint(equalTo: lastUsageLabel.leadingAnchor),
+            
+            cardIDResultLabel.leadingAnchor.constraint(equalTo: cardIDTextLabel.trailingAnchor, constant: 5),
+            cardIDResultLabel.centerYAnchor.constraint(equalTo: cardIDTextLabel.centerYAnchor),
+            
+            balanceLabel.bottomAnchor.constraint(equalTo: cardIDTextLabel.topAnchor, constant: -15),
+            balanceLabel.leadingAnchor.constraint(equalTo: cardIDTextLabel.leadingAnchor),
+            
+            balanceResultLabel.leadingAnchor.constraint(equalTo: balanceLabel.trailingAnchor, constant: 5),
+            balanceResultLabel.centerYAnchor.constraint(equalTo: balanceLabel.centerYAnchor),
+        ])
+    }
+    
     func configure(){
         view.backgroundColor = .white
         
-        let cardIDLabel = UILabel()
+        cardIDLabel = UILabel()
         cardIDLabel.translatesAutoresizingMaskIntoConstraints = false
         cardIDLabel.textAlignment = .right
         cardIDLabel.text = "Card Number".localized
@@ -32,6 +105,8 @@ final class CheckBalanceViewController: UIViewController {
         cardIDTextField.placeholder = "Please, type your card id or scan it".localized
         cardIDTextField.textAlignment = .center
         cardIDTextField.font = UIFont.systemFont(ofSize: 20)
+        cardIDTextField.autocorrectionType = .no
+        cardIDTextField.autocapitalizationType = .none
         cardIDTextField.layer.borderColor = UIColor.lightGray.cgColor
         cardIDTextField.layer.borderWidth = 1
         cardIDTextField.layer.cornerRadius = 5
@@ -87,8 +162,8 @@ final class CheckBalanceViewController: UIViewController {
             try helper.restartSession()
         } catch NFCError.deviceNotSupported{
             let alertController = UIAlertController(
-                title: "Scanning Not Supported",
-                message: "This device doesn't support tag scanning.",
+                title: "Scanning Not Supported".localized,
+                message: "This device doesn't support tag scanning.".localized,
                 preferredStyle: .alert
             )
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -100,7 +175,22 @@ final class CheckBalanceViewController: UIViewController {
     
     @objc func didCheckBalanceTapped(){
         cardIDTextField.endEditing(true)
-        print("Check balance tapped")
+        
+        if cardIDTextField.text == "" {
+            cardIDLabel.text = "Card Number !".localized
+            return
+        }
+        
+        lastUsageResultLabel.isHidden = false
+        balanceLabel.isHidden = false
+        balanceResultLabel.isHidden = false
+        cardIDTextLabel.isHidden = false
+        cardIDResultLabel.isHidden = false
+        lastUsageLabel.isHidden = false
+        
+        cardIDResultLabel.text = cardIDTextField.text
+        balanceResultLabel.text = "\(String(format:"%.2f", Double.random(in: 10.0 ..< 20.0)))₺"
+        
     }
 
 }

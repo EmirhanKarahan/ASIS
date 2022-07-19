@@ -149,7 +149,7 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = .green
+        renderer.strokeColor = .systemBlue
         renderer.lineCap = .round
         renderer.lineWidth = 6.0
         return renderer
@@ -249,13 +249,14 @@ extension RouteDetailViewController: MKMapViewDelegate{
             annotationView?.annotation = annotation
         }
         
-        annotationView?.image = UIImage(named: "bus-station-annotation")
-        annotationView?.displayPriority = .defaultHigh
-        
         if annotationView?.annotation?.title == "person" {
             annotationView?.image = UIImage(named: "person-annotation")
             annotationView?.displayPriority = .required
+            return annotationView
         }
+        
+        annotationView?.image = UIImage(named: "bus-station-annotation")
+        annotationView?.displayPriority = .defaultHigh
         
         return annotationView
     }

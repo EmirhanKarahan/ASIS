@@ -12,6 +12,10 @@
 "Busses" = "Otobüsler";
 "Routes" = "Rotalar";
 
+"Balance:" = "Bakiye:";
+"Card ID:" = "Kart Numarası:";
+"Last Usage:" = "Son Kullanım:";
+
 "Password" = "Parola";
 "Password again" = "Tekrar parola";
 "Reset Password" = "Parolayı Sıfırla";
@@ -56,3 +60,5 @@
 
 "Scanning Not Supported" = "Tarama Desteklenmiyor";
 "This device doesn't support tag scanning." = "Bu cihaz kart taramayı desteklemiyor.";
+
+

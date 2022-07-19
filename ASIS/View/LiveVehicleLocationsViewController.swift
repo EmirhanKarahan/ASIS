@@ -48,6 +48,7 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
             UIView.animate(withDuration: 0.5) { [self] in
                 if let vehicle = self.vehicles.first(where: { $0.vehicleID == annotation.vehicleID }) {
                     annotation.coordinate = CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude)
+                    annotation.angle = vehicle.heading ?? 0
                 }
             }
         }
@@ -55,7 +56,7 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
        if isSetCoordinatesMoreThanOnce { return }
 
         for vehicle in vehicles {
-            let pin = BusAnnotation(coordinate: CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude), vehicleID: vehicle.vehicleID)
+            let pin = BusAnnotation(coordinate: CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude), vehicleID: vehicle.vehicleID, angle: vehicle.heading ?? 0)
             busAnnotations.append(pin)
         }
 
@@ -107,30 +108,35 @@ extension LiveVehicleLocationsViewController: LiveVehicleLocationsOutPut{
     }
 }
 
-extension LiveVehicleLocationsViewController: MKMapViewDelegate{
+extension LiveVehicleLocationsViewController: MKMapViewDelegate {
+    
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation{
+        
+        if annotation is MKUserLocation {
             return nil
         }
         
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
         
-        if annotationView == nil{
+        if annotationView == nil {
             //create view
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
-        }else{
+        } else {
             //assign annotation
             annotationView?.annotation = annotation
+        }
+        
+        if annotationView?.annotation?.title == "person" {
+            annotationView?.image = UIImage(named: "person-annotation")
+            annotationView?.displayPriority = .required
+            return annotationView
         }
         
         annotationView?.image = UIImage(named: "bus-annotation")
         annotationView?.displayPriority = .defaultHigh
         
-        if annotationView?.annotation?.title == "person" {
-            annotationView?.image = UIImage(named: "person-annotation")
-            annotationView?.displayPriority = .required
-        }
-        
         return annotationView
     }
+    
 }

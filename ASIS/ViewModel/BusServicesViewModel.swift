@@ -28,7 +28,7 @@ final class BusServicesViewModel:IBusServicesViewModel {
     func fetchServices() {
         busServicesService.fetchAllDatas { [weak self] (response) in
             self?.services = response ?? []
-            self?.busServicesOutput?.saveDatas(values: self?.services ?? [])
+            self?.busServicesOutput?.saveServices(values: self?.services ?? [])
         }
     }
     

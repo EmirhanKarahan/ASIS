@@ -17,7 +17,7 @@ final class HomepageViewController: UIViewController, CLLocationManagerDelegate 
         let map = MKMapView()
         return map
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self

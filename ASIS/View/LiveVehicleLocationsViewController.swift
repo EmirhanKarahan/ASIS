@@ -52,14 +52,14 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
                 }
             }
         }
-
-       if isSetCoordinatesMoreThanOnce { return }
-
+        
+        if isSetCoordinatesMoreThanOnce { return }
+        
         for vehicle in vehicles {
             let pin = BusAnnotation(coordinate: CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude), vehicleID: vehicle.vehicleID, angle: vehicle.heading ?? 0)
             busAnnotations.append(pin)
         }
-
+        
         mapView.addAnnotations(busAnnotations)
         mapView.showAnnotations(mapView.annotations, animated: true)
         isSetCoordinatesMoreThanOnce = true

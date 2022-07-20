@@ -6,7 +6,7 @@ import Foundation
 struct LiveBusLocations: Codable {
     let lastUpdated: Int
     let vehicles: [Vehicle]
-
+    
     enum CodingKeys: String, CodingKey {
         case lastUpdated = "last_updated"
         case vehicles
@@ -24,7 +24,7 @@ struct Vehicle: Codable {
     let vehicleType: VehicleType
     let ineoGpsFix: Int
     let icomeraGpsFix: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case vehicleID = "vehicle_id"
         case lastGpsFix = "last_gps_fix"
@@ -47,4 +47,5 @@ enum Source: String, Codable {
 
 enum VehicleType: String, Codable {
     case bus = "bus"
+    case tram = "tram"
 }

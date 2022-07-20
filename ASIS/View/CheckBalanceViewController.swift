@@ -20,6 +20,8 @@ final class CheckBalanceViewController: UIViewController {
     var lastUsageLabel : UILabel!
     var lastUsageResultLabel : UILabel!
     
+    let randomCities = ["Kutahya", "Izmir", "Erzincan", "Manisa", "Eskişehir", "Bursa", "Diyarbakır", "Burdur", "Kocaeli", "Afyon"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -30,7 +32,7 @@ final class CheckBalanceViewController: UIViewController {
         balanceLabel = UILabel()
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
         balanceLabel.text = "Balance:".localized
-        balanceLabel.font = UIFont.systemFont(ofSize: 18)
+        balanceLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         
         balanceResultLabel = UILabel()
         balanceResultLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +41,7 @@ final class CheckBalanceViewController: UIViewController {
         cardIDTextLabel = UILabel()
         cardIDTextLabel.translatesAutoresizingMaskIntoConstraints = false
         cardIDTextLabel.text = "Card ID:".localized
-        cardIDTextLabel.font = UIFont.systemFont(ofSize: 18)
+        cardIDTextLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
        
         cardIDResultLabel = UILabel()
         cardIDResultLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -48,11 +50,10 @@ final class CheckBalanceViewController: UIViewController {
         lastUsageLabel = UILabel()
         lastUsageLabel.translatesAutoresizingMaskIntoConstraints = false
         lastUsageLabel.text = "Last Usage:".localized
-        lastUsageLabel.font = UIFont.systemFont(ofSize: 18)
+        lastUsageLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
        
         lastUsageResultLabel = UILabel()
         lastUsageResultLabel.translatesAutoresizingMaskIntoConstraints = false
-        lastUsageResultLabel.text = "19.05.2021 - Kutahya"
         lastUsageResultLabel.font = UIFont.systemFont(ofSize: 18)
         
         lastUsageResultLabel.isHidden = true
@@ -189,7 +190,8 @@ final class CheckBalanceViewController: UIViewController {
         lastUsageLabel.isHidden = false
         
         cardIDResultLabel.text = cardIDTextField.text
-        balanceResultLabel.text = "\(String(format:"%.2f", Double.random(in: 10.0 ..< 20.0)))₺"
+        balanceResultLabel.text = "\(String(format:"%.2f", Double.random(in: 10.0...20.0)))₺"
+        lastUsageResultLabel.text = "\(Int.random(in: 1...30)).\(Int.random(in: 1...12)).20\(Int.random(in: 18...22)) - \(randomCities[Int.random(in: 0...randomCities.count-1)])"
         
     }
 

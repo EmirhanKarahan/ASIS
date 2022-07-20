@@ -4,7 +4,7 @@ import Foundation
 struct BusStops: Codable {
     let lastUpdated: Int?
     let stops: [Stop]?
-
+    
     enum CodingKeys: String, CodingKey {
         case lastUpdated
         case stops
@@ -23,7 +23,7 @@ struct Stop: Codable {
     let serviceType: String?
     let destinations, services: [String]?
     let atcoLatitude, atcoLongitude: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case stopID
         case atcoCode

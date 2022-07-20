@@ -9,7 +9,7 @@ import Foundation
 struct BusServices: Codable {
     let lastUpdated: Int?
     let services: [Service]?
-
+    
     enum CodingKeys: String, CodingKey {
         case lastUpdated
         case services
@@ -20,7 +20,7 @@ struct BusServices: Codable {
 struct Service: Codable {
     let name, description, serviceType: String?
     let routes: [Route]?
-
+    
     enum CodingKeys: String, CodingKey {
         case name
         case description
@@ -40,7 +40,7 @@ struct Route: Codable {
 struct Point: Codable {
     let stop_id: String?
     let latitude, longitude: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case stop_id
         case latitude, longitude

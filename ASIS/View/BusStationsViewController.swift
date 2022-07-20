@@ -104,7 +104,7 @@ extension BusStationsViewController: MKMapViewDelegate{
             annotationView?.annotation = annotation
         }
         
-        annotationView?.image = UIImage(named: "bus-station-annotation")
+        annotationView?.image = UIImage(named: "bus-station-annotation-1")
         annotationView?.displayPriority = .defaultHigh
         
         if annotationView?.annotation?.title == "person" {

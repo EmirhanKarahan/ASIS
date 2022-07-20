@@ -9,19 +9,25 @@ import MapKit
 import CoreLocation
 
 protocol BusServicesOutput{
-    func saveDatas(values: [Service])
+    func saveServices(values: [Service])
 }
 
 final class RoutesViewController: UITableViewController, UISearchBarDelegate {
     
     private let searchBar = UISearchBar()
+    private var spinner:UIActivityIndicatorView!
     
     private var services: [Service] = [] {
         didSet{
+            
             filteredServices = services
+            spinner.stopAnimating()
             tableView.reloadData()
         }
     }
+    
+    private var vehicles = [Vehicle]()
+    
     private var filteredServices: [Service] = []
     private let viewModel: BusServicesViewModel = BusServicesViewModel()
     
@@ -34,6 +40,19 @@ final class RoutesViewController: UITableViewController, UISearchBarDelegate {
         tableView.tableHeaderView = searchBar
         searchBar.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "routeCell")
+        configureViews()
+    }
+    
+    private func configureViews(){
+        spinner = UIActivityIndicatorView()
+        spinner.startAnimating()
+        spinner.style = .large
+        spinner.hidesWhenStopped = true
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(spinner)
+        
+        spinner.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor).isActive = true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,7 +74,7 @@ final class RoutesViewController: UITableViewController, UISearchBarDelegate {
             return
         }
         
-        let vc = RouteDetailViewController()
+        let vc = RouteDetailsViewController()
         vc.selectedService = selectedService
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -81,7 +100,7 @@ final class RoutesViewController: UITableViewController, UISearchBarDelegate {
 }
 
 extension RoutesViewController: BusServicesOutput{
-    func saveDatas(values: [Service]) {
+    func saveServices(values: [Service]) {
         services = values
     }
 }

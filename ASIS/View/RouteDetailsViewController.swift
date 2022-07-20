@@ -12,30 +12,57 @@ import CoreLocation
 import DropDown
 import CoreData
 
-final class RouteDetailViewController: UIViewController, CLLocationManagerDelegate {
-    
+protocol RouteDetailsOutput{
+    func saveVehicles(values: [Vehicle])
+}
+
+final class RouteDetailsViewController: UIViewController, CLLocationManagerDelegate {
     //MARK: Properties
     
     private var data = [NSManagedObject]()
     var selectedService: Service!
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
+    private let viewModel:RouteDetailsViewModel = RouteDetailsViewModel()
+    
+    private var vehicles:[Vehicle] = []{
+        didSet{
+            updateVehicleLocations()
+        }
+    }
+    
+    private var isSetCoordinatesMoreThanOnce = false
+    private var busAnnotations = [BusAnnotation]()
     
     private var directionButton:UIButton!
     private var focusMeButton:UIButton!
     private var focusRouteButton:UIButton!
     
-    var menu:DropDown!
-    var routeOverlay:MKOverlay?
-    var personCoordinate:CLLocationCoordinate2D?
+    private var menu:DropDown!
+    private var routeOverlay:MKOverlay?
+    private var personCoordinate:CLLocationCoordinate2D?
+    
+    private var timer = Timer()
     
     var selectedRoute: Route!{
         didSet{
             title = "\("Direction".localized): \(selectedRoute.destination ?? "Unknown")"
+            timer.invalidate()
             
             let annotations = mapView.annotations.filter {
-                $0.title != "person"
+                return $0.title != "person"
             }
+            
             mapView.removeAnnotations(annotations)
+            busAnnotations.removeAll()
+            mapView.removeOverlays(mapView.overlays)
+            drawRoute()
+            
+            isSetCoordinatesMoreThanOnce = false
+            
+            viewModel.fetchVehiclesInRoute(service:selectedService, route: selectedRoute)
+            timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { _ in
+                self.viewModel.fetchVehiclesInRoute(service:self.selectedService, route: self.selectedRoute)
+            })
             
             DispatchQueue.main.async {
                 for point in self.selectedRoute.points! {
@@ -51,13 +78,31 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         }
     }
     
-    let mapView : MKMapView = {
+    private let mapView : MKMapView = {
         let map = MKMapView()
         return map
     }()
     
-    
-    // MARK: Functions
+    func updateVehicleLocations() {
+        for annotation in busAnnotations {
+            UIView.animate(withDuration: 0.5) { [self] in
+                if let vehicle = self.vehicles.first(where: { $0.vehicleID == annotation.vehicleID }) {
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude)
+                    annotation.angle = vehicle.heading ?? 0
+                }
+            }
+        }
+        
+        if isSetCoordinatesMoreThanOnce { return }
+        
+        for vehicle in vehicles {
+            let pin = BusAnnotation(coordinate: CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude), vehicleID: vehicle.vehicleID, angle: vehicle.heading ?? 0)
+            busAnnotations.append(pin)
+        }
+        
+        mapView.addAnnotations(busAnnotations)
+        isSetCoordinatesMoreThanOnce = true
+    }
     
     private func fetch(){
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -69,6 +114,7 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        viewModel.setDelegate(output: self)
         setMapConstraints()
         configureDropdown()
         configureButtons()
@@ -77,7 +123,7 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         fetch()
         for datum in data {
             if selectedService.name == datum.value(forKey: "favoriteName") as? String{
-                    return
+                return
             }
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add-to-favorites"), style: .plain, target: self, action: #selector(addToFavorites))
@@ -165,11 +211,11 @@ final class RouteDetailViewController: UIViewController, CLLocationManagerDelega
         mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
     }
-
+    
 }
 
 // MARK: Utility Buttons
-extension RouteDetailViewController{
+extension RouteDetailsViewController{
     
     private func configureButtons(){
         directionButton = UIButton()
@@ -233,7 +279,7 @@ extension RouteDetailViewController{
     }
 }
 
-extension RouteDetailViewController: MKMapViewDelegate{
+extension RouteDetailsViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation{
             return nil
@@ -255,9 +301,21 @@ extension RouteDetailViewController: MKMapViewDelegate{
             return annotationView
         }
         
-        annotationView?.image = UIImage(named: "bus-station-annotation")
-        annotationView?.displayPriority = .defaultHigh
+        if annotationView?.annotation is BusAnnotation{
+            annotationView?.image = UIImage(named: "bus-annotation")
+            annotationView?.displayPriority = .required
+            return annotationView
+        }
+        
+        annotationView?.image = UIImage(named: "bus-station-annotation-2")
+        annotationView?.displayPriority = .required
         
         return annotationView
+    }
+}
+
+extension RouteDetailsViewController : RouteDetailsOutput {
+    func saveVehicles(values: [Vehicle]) {
+        vehicles = values
     }
 }

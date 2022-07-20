@@ -11,7 +11,6 @@ import CoreData
 final class FavoritesTableViewController: UITableViewController {
     
     var data = [NSManagedObject]()
-    
     var services = [Service]()
     
     private let viewModel: BusServicesViewModel = BusServicesViewModel()
@@ -52,7 +51,7 @@ final class FavoritesTableViewController: UITableViewController {
         let favorite = self.data[indexPath.row]
         let name = favorite.value(forKey: "favoriteName") as! String
         guard let selectedService = self.findServiceByName(serviceName: name) else { print("🟨 Couldn't find service"); return }
-        let vc = RouteDetailViewController()
+        let vc = RouteDetailsViewController()
         vc.selectedService = selectedService
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -71,11 +70,11 @@ final class FavoritesTableViewController: UITableViewController {
         }
         return nil
     }
-
+    
 }
 
 extension FavoritesTableViewController: BusServicesOutput{
-    func saveDatas(values: [Service]) {
+    func saveServices(values: [Service]) {
         services = values
     }
 }

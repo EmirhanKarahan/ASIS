@@ -21,14 +21,14 @@ final class BusStationsViewController: UIViewController, CLLocationManagerDelega
     private var stops: [Stop] = [] {
         didSet {
             let annotations = mapView.annotations.filter {
-                $0.title != "person"
+                $0.title != "You".localized
             }
             mapView.removeAnnotations(annotations)
             
             for stop in stops {
                 let pin = MKPointAnnotation()
                 pin.coordinate = CLLocationCoordinate2D(latitude: stop.latitude!, longitude: stop.longitude!)
-                
+                pin.title = "\(stop.name ?? "unknown")"
                 mapView.addAnnotation(pin)
             }
             
@@ -47,6 +47,7 @@ final class BusStationsViewController: UIViewController, CLLocationManagerDelega
         mapView.delegate = self
         viewModel.setDelegate(output: self)
         viewModel.fetchStops()
+        title = "Bus Stops".localized
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,7 +68,7 @@ final class BusStationsViewController: UIViewController, CLLocationManagerDelega
     func render(_ location: CLLocation){
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let pin = MKPointAnnotation()
-        pin.title = "person"
+        pin.title = "You".localized
         pin.coordinate = coordinate
         mapView.addAnnotation(pin)
     }
@@ -96,10 +97,10 @@ extension BusStationsViewController: MKMapViewDelegate{
             return nil
         }
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "stopAnnotation")
         
         if annotationView == nil{
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
+            annotationView = StopAnnotationView(annotation: annotation, reuseIdentifier: "stopAnnotation")
         }else{
             annotationView?.annotation = annotation
         }
@@ -107,7 +108,7 @@ extension BusStationsViewController: MKMapViewDelegate{
         annotationView?.image = UIImage(named: "bus-station-annotation-1")
         annotationView?.displayPriority = .defaultHigh
         
-        if annotationView?.annotation?.title == "person" {
+        if annotationView?.annotation?.title == "You".localized {
             annotationView?.image = UIImage(named: "person-annotation")
             annotationView?.displayPriority = .required
         }

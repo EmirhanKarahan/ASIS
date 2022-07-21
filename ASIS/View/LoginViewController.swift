@@ -20,6 +20,7 @@ final class LoginViewController: UIViewController {
     private var errorLabel:UILabel!
     private var passwordToggleButton:UIButton!
     private var redirectToSignUpButton:UIButton!
+    private var resetPasswordButton:UIButton!
     
     var gestureRecognizer = UITapGestureRecognizer()
     
@@ -69,6 +70,10 @@ final class LoginViewController: UIViewController {
         }
         passwordToggleButton.setImage(UIImage(named: "eye-closed"), for: .normal)
         passwordTextField.isSecureTextEntry = true
+    }
+    
+    @objc func didTapResetPassword(){
+        present(ResetPasswordViewController(), animated: true)
     }
     
     func assignbackground(){
@@ -122,6 +127,7 @@ final class LoginViewController: UIViewController {
         emailTextField.layer.borderColor = UIColor(red: 47/255, green: 128/255, blue: 237/255, alpha: 1).cgColor
         emailTextField.autocapitalizationType = .none
         emailTextField.autocorrectionType = .no
+        emailTextField.keyboardType = .emailAddress
         emailTextField.layer.cornerRadius = 8
         view.addSubview(emailTextField)
         
@@ -149,6 +155,12 @@ final class LoginViewController: UIViewController {
         passwordToggleButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         passwordToggleButton.addTarget(self, action: #selector(didTapTogglePassword), for: .touchUpInside)
         view.addSubview(passwordToggleButton)
+        
+        resetPasswordButton = UIButton(type: .system)
+        resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        resetPasswordButton.setTitle("Reset Password", for: .normal)
+        resetPasswordButton.addTarget(self, action: #selector(didTapResetPassword), for: .touchUpInside)
+        view.addSubview(resetPasswordButton)
     
         signInButton = UIButton()
         signInButton.translatesAutoresizingMaskIntoConstraints = false
@@ -187,6 +199,9 @@ final class LoginViewController: UIViewController {
             errorLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor),
             errorLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
             errorLabel.widthAnchor.constraint(equalTo: passwordTextField.widthAnchor),
+            
+            resetPasswordButton.topAnchor.constraint(equalTo: errorLabel.bottomAnchor),
+            resetPasswordButton.leadingAnchor.constraint(equalTo: errorLabel.leadingAnchor),
             
             signInButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             signInButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),

@@ -19,43 +19,54 @@ final class CheckBalanceViewController: UIViewController {
     var cardIDResultLabel : UILabel!
     var lastUsageLabel : UILabel!
     var lastUsageResultLabel : UILabel!
+    var imageView: UIImage!
+    var cardImageView: UIImageView!
     
     let randomCities = ["Kutahya", "Izmir", "Erzincan", "Manisa", "Eskişehir", "Bursa", "Diyarbakır", "Burdur", "Kocaeli", "Afyon"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
         configureResults()
+        configure()
     }
     
-    func configureResults(){
+    func configureResults() {
+        cardImageView = UIImageView()
+        cardImageView.image = UIImage(named: "credit-card")
+        cardImageView.contentMode = .scaleAspectFill
+        cardImageView.translatesAutoresizingMaskIntoConstraints = false
+        
         balanceLabel = UILabel()
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
         balanceLabel.text = "Balance:".localized
-        balanceLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        balanceLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        balanceLabel.textColor = .white
         
         balanceResultLabel = UILabel()
         balanceResultLabel.translatesAutoresizingMaskIntoConstraints = false
-        balanceResultLabel.font = UIFont.systemFont(ofSize: 18)
+        balanceResultLabel.font = UIFont.systemFont(ofSize: 12)
        
         cardIDTextLabel = UILabel()
         cardIDTextLabel.translatesAutoresizingMaskIntoConstraints = false
         cardIDTextLabel.text = "Card ID:".localized
-        cardIDTextLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        cardIDTextLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        cardIDTextLabel.textColor = .white
        
         cardIDResultLabel = UILabel()
         cardIDResultLabel.translatesAutoresizingMaskIntoConstraints = false
-        cardIDResultLabel.font = UIFont.systemFont(ofSize: 18)
+        cardIDResultLabel.font = UIFont.systemFont(ofSize: 12)
         
         lastUsageLabel = UILabel()
         lastUsageLabel.translatesAutoresizingMaskIntoConstraints = false
         lastUsageLabel.text = "Last Usage:".localized
-        lastUsageLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        lastUsageLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        lastUsageLabel.textColor = .white
        
         lastUsageResultLabel = UILabel()
         lastUsageResultLabel.translatesAutoresizingMaskIntoConstraints = false
-        lastUsageResultLabel.font = UIFont.systemFont(ofSize: 18)
+        lastUsageResultLabel.font = UIFont.systemFont(ofSize: 12)
         
+        cardImageView.isHidden = true
         lastUsageResultLabel.isHidden = true
         balanceLabel.isHidden = true
         balanceResultLabel.isHidden = true
@@ -63,16 +74,17 @@ final class CheckBalanceViewController: UIViewController {
         cardIDResultLabel.isHidden = true
         lastUsageLabel.isHidden = true
         
-        view.addSubview(lastUsageResultLabel)
-        view.addSubview(balanceLabel)
-        view.addSubview(balanceResultLabel)
-        view.addSubview(cardIDTextLabel)
-        view.addSubview(cardIDResultLabel)
-        view.addSubview(lastUsageLabel)
+        view.addSubview(cardImageView)
+        cardImageView.addSubview(lastUsageResultLabel)
+        cardImageView.addSubview(balanceLabel)
+        cardImageView.addSubview(balanceResultLabel)
+        cardImageView.addSubview(cardIDTextLabel)
+        cardImageView.addSubview(cardIDResultLabel)
+        cardImageView.addSubview(lastUsageLabel)
         
         NSLayoutConstraint.activate([
-            lastUsageLabel.bottomAnchor.constraint(equalTo: cardIDLabel.topAnchor, constant: -30),
-            lastUsageLabel.leadingAnchor.constraint(equalTo: cardIDLabel.leadingAnchor, constant: 30),
+            lastUsageLabel.bottomAnchor.constraint(equalTo: cardImageView.bottomAnchor, constant: 0),
+            lastUsageLabel.leadingAnchor.constraint(equalTo: cardImageView.leadingAnchor, constant: 10),
             
             lastUsageResultLabel.leadingAnchor.constraint(equalTo: lastUsageLabel.trailingAnchor, constant: 5),
             lastUsageResultLabel.centerYAnchor.constraint(equalTo: lastUsageLabel.centerYAnchor),
@@ -132,11 +144,16 @@ final class CheckBalanceViewController: UIViewController {
         checkBalanceButton.addTarget(self, action: #selector(didCheckBalanceTapped), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            cardIDLabel.leadingAnchor.constraint(equalTo: cardIDTextField.leadingAnchor),
-            cardIDLabel.bottomAnchor.constraint(equalTo: cardIDTextField.topAnchor),
+            cardImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            cardImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            cardImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width * 0.7),
+            cardImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height * 0.2),
             
+            cardIDLabel.topAnchor.constraint(equalTo: cardImageView.bottomAnchor, constant:40),
+            cardIDLabel.leadingAnchor.constraint(equalTo: cardIDTextField.leadingAnchor),
+            
+            cardIDTextField.topAnchor.constraint(equalTo: cardIDLabel.bottomAnchor),
             cardIDTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cardIDTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             cardIDTextField.heightAnchor.constraint(equalToConstant: 40),
             cardIDTextField.widthAnchor.constraint(equalToConstant: 350),
             
@@ -182,6 +199,7 @@ final class CheckBalanceViewController: UIViewController {
             return
         }
         
+        cardImageView.isHidden = false
         lastUsageResultLabel.isHidden = false
         balanceLabel.isHidden = false
         balanceResultLabel.isHidden = false

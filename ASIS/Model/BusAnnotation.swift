@@ -17,7 +17,6 @@ final class BusAnnotation: NSObject, MKAnnotation{
         self.coordinate = coordinate
         self.vehicleID = vehicleID
         self.angle = angle
-        self.title = "bus"
         super.init()
     }
 }

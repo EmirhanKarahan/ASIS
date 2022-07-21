@@ -28,6 +28,8 @@
 		1E326DE4286DE14E00AA6EB2 /* BusServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E326DE3286DE14E00AA6EB2 /* BusServices.swift */; };
 		1E326DE6286DE23E00AA6EB2 /* BusServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E326DE5286DE23E00AA6EB2 /* BusServicesViewModel.swift */; };
 		1E326DE8286DE2A800AA6EB2 /* BusServicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E326DE7286DE2A800AA6EB2 /* BusServicesService.swift */; };
+		1E33E21628893F5300624C27 /* credit-card.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E33E21528893F5300624C27 /* credit-card.png */; };
+		1E33E21A28896BB900624C27 /* BusAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E33E21928896BB900624C27 /* BusAnnotationView.swift */; };
 		1E4CA901286EE75C001F5B6A /* RouteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4CA900286EE75B001F5B6A /* RouteDetailsViewController.swift */; };
 		1E6081CC2887E35E00B69850 /* RouteDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6081CB2887E35E00B69850 /* RouteDetailsViewModel.swift */; };
 		1E62B762286B2CA200CD9F08 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E62B761286B2CA200CD9F08 /* UITextField+Extension.swift */; };
@@ -55,9 +57,11 @@
 		1E7EE061286C45AC00099938 /* BusStationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7EE060286C45AC00099938 /* BusStationsViewModel.swift */; };
 		1E7EE063286C639C00099938 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7EE062286C639C00099938 /* SideMenuTableViewController.swift */; };
 		1E7EE065286C742100099938 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E7EE064286C742100099938 /* GoogleService-Info.plist */; };
+		1E81033F28898DC800CC790D /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E81033E28898DC800CC790D /* ResetPasswordViewController.swift */; };
 		1EC7C5CA2878184C00E77614 /* BusAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC7C5C92878184C00E77614 /* BusAnnotation.swift */; };
 		1EDB7AEE2872DFD300B511DD /* ASIS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB7AEC2872DFD300B511DD /* ASIS.xcdatamodeld */; };
 		1EDB7AF02872FFD400B511DD /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB7AEF2872FFD400B511DD /* FavoritesTableViewController.swift */; };
+		1EF40B0328897AB60035C0E5 /* StopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF40B0228897AB60035C0E5 /* StopAnnotationView.swift */; };
 		E5A5F288E7BA69A94B787446 /* Pods_ASIS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402C85286506A38AE4B36281 /* Pods_ASIS.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +89,8 @@
 		1E326DE3286DE14E00AA6EB2 /* BusServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusServices.swift; sourceTree = "<group>"; };
 		1E326DE5286DE23E00AA6EB2 /* BusServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusServicesViewModel.swift; sourceTree = "<group>"; };
 		1E326DE7286DE2A800AA6EB2 /* BusServicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusServicesService.swift; sourceTree = "<group>"; };
+		1E33E21528893F5300624C27 /* credit-card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credit-card.png"; sourceTree = "<group>"; };
+		1E33E21928896BB900624C27 /* BusAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAnnotationView.swift; sourceTree = "<group>"; };
 		1E4CA900286EE75B001F5B6A /* RouteDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailsViewController.swift; sourceTree = "<group>"; };
 		1E6081CB2887E35E00B69850 /* RouteDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailsViewModel.swift; sourceTree = "<group>"; };
 		1E62B761286B2CA200CD9F08 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
@@ -114,9 +120,11 @@
 		1E7EE060286C45AC00099938 /* BusStationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStationsViewModel.swift; sourceTree = "<group>"; };
 		1E7EE062286C639C00099938 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		1E7EE064286C742100099938 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1E81033E28898DC800CC790D /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		1EC7C5C92878184C00E77614 /* BusAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAnnotation.swift; sourceTree = "<group>"; };
 		1EDB7AED2872DFD300B511DD /* ASIS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ASIS.xcdatamodel; sourceTree = "<group>"; };
 		1EDB7AEF2872FFD400B511DD /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		1EF40B0228897AB60035C0E5 /* StopAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopAnnotationView.swift; sourceTree = "<group>"; };
 		24F990D64B42524131244907 /* Pods-ASIS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASIS.debug.xcconfig"; path = "Target Support Files/Pods-ASIS/Pods-ASIS.debug.xcconfig"; sourceTree = "<group>"; };
 		402C85286506A38AE4B36281 /* Pods_ASIS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASIS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA4779853F59F5467F038BEA /* Pods-ASIS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASIS.release.xcconfig"; path = "Target Support Files/Pods-ASIS/Pods-ASIS.release.xcconfig"; sourceTree = "<group>"; };
@@ -217,6 +225,8 @@
 				1E7EE062286C639C00099938 /* SideMenuTableViewController.swift */,
 				1EDB7AEF2872FFD400B511DD /* FavoritesTableViewController.swift */,
 				1E321B542876D38B00F88F32 /* WalkthroughViewController.swift */,
+				1E33E21928896BB900624C27 /* BusAnnotationView.swift */,
+				1EF40B0228897AB60035C0E5 /* StopAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -273,6 +283,7 @@
 			children = (
 				1E6793F22869F5FC00ADEE4B /* LoginViewController.swift */,
 				1E6793F42869F60400ADEE4B /* RegisterViewController.swift */,
+				1E81033E28898DC800CC790D /* ResetPasswordViewController.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -303,6 +314,7 @@
 				1E321B72287708DA00F88F32 /* Walk 3.png */,
 				1E321B6F287708DA00F88F32 /* Walk 4.png */,
 				1E321B70287708DA00F88F32 /* Walk 5.png */,
+				1E33E21528893F5300624C27 /* credit-card.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -397,6 +409,7 @@
 				1E321B6C287707EA00F88F32 /* school-bus-animated.gif in Resources */,
 				1E321B74287708DA00F88F32 /* Walk 4.png in Resources */,
 				1E7EE065286C742100099938 /* GoogleService-Info.plist in Resources */,
+				1E33E21628893F5300624C27 /* credit-card.png in Resources */,
 				1E321B69287707EA00F88F32 /* route-animated.gif in Resources */,
 				1E12D443286AD75800E8A57B /* Localizable.strings in Resources */,
 				1E321B6B287707EA00F88F32 /* bus-animated.gif in Resources */,
@@ -475,11 +488,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E33E21A28896BB900624C27 /* BusAnnotationView.swift in Sources */,
 				1E4CA901286EE75C001F5B6A /* RouteDetailsViewController.swift in Sources */,
 				1E12D449286AF22000E8A57B /* NFCHelper.swift in Sources */,
 				1E7EE05F286C452600099938 /* BusStops.swift in Sources */,
 				1EDB7AF02872FFD400B511DD /* FavoritesTableViewController.swift in Sources */,
 				1E6793E42869E93400ADEE4B /* BusStationsViewController.swift in Sources */,
+				1EF40B0328897AB60035C0E5 /* StopAnnotationView.swift in Sources */,
 				1E7EE063286C639C00099938 /* SideMenuTableViewController.swift in Sources */,
 				1E6793E82869E98B00ADEE4B /* CheckBalanceViewController.swift in Sources */,
 				1E6793E02869DB7D00ADEE4B /* HomepageTabBarController.swift in Sources */,
@@ -500,6 +515,7 @@
 				1E6793D62869C8A700ADEE4B /* HomepageViewController.swift in Sources */,
 				1E6793F52869F60400ADEE4B /* RegisterViewController.swift in Sources */,
 				1E7EE061286C45AC00099938 /* BusStationsViewModel.swift in Sources */,
+				1E81033F28898DC800CC790D /* ResetPasswordViewController.swift in Sources */,
 				1EDB7AEE2872DFD300B511DD /* ASIS.xcdatamodeld in Sources */,
 				1E12D43F286AD64D00E8A57B /* String+Extensions.swift in Sources */,
 				1E62B766286B342600CD9F08 /* LiveVehicleLocationsService.swift in Sources */,

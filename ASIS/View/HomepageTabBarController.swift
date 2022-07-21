@@ -15,18 +15,12 @@ final class HomepageTabBarController: UITabBarController {
         super.viewDidLoad()
         addViewControllersToTabBar()
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "burger-menu"), style: .plain, target: self, action: #selector(openSideMenu))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "favorites"), style: .plain, target: self, action: #selector(openFavorites))
     }
     
     @objc func openSideMenu(){
         let menu = SideMenuNavigationController(rootViewController: SideMenuTableViewController())
         menu.leftSide = true
         present(menu, animated: true, completion: nil)
-    }
-    
-    @objc func openFavorites(){
-        let favorites = SideMenuNavigationController(rootViewController: FavoritesTableViewController())
-        present(favorites, animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,23 +37,20 @@ final class HomepageTabBarController: UITabBarController {
         homepageViewController.title = "Homepage".localized
         homepageViewController.tabBarItem = UITabBarItem.init(title: "Homepage".localized, image: UIImage(named: "home"), tag: 0)
         
-        let busStationViewController = BusStationsViewController()
-        busStationViewController.title = "Stations".localized
-        busStationViewController.tabBarItem = UITabBarItem.init(title: "Stations".localized, image: UIImage(named: "station"), tag: 1)
-        
         let checkBalanceViewController = CheckBalanceViewController()
         checkBalanceViewController.title = "Balance".localized
-        checkBalanceViewController.tabBarItem = UITabBarItem.init(title: "Balance".localized, image: UIImage(named: "balance"), tag: 2)
+        checkBalanceViewController.tabBarItem = UITabBarItem.init(title: "Balance".localized, image: UIImage(named: "balance"), tag: 1)
         
-        let dealersViewController = RoutesViewController()
-        dealersViewController.title = "Routes".localized
-        dealersViewController.tabBarItem = UITabBarItem.init(title: "Routes".localized, image: UIImage(named: "route"), tag: 3)
+        let routesViewController = RoutesViewController()
+        routesViewController.title = "Routes".localized
+        routesViewController.tabBarItem = UITabBarItem.init(title: "Routes".localized, image: UIImage(named: "route"), tag: 2)
         
-        let busGeolocationsViewController = LiveVehicleLocationsViewController()
-        busGeolocationsViewController.title = "Busses".localized
-        busGeolocationsViewController.tabBarItem = UITabBarItem.init(title: "Busses".localized, image: UIImage(named: "bus-location"), tag: 4)
         
-        let controllerArray: [UIViewController] = [homepageViewController, busStationViewController, checkBalanceViewController, dealersViewController, busGeolocationsViewController]
+        let favoritesViewController = FavoritesTableViewController()
+        favoritesViewController.title = "Favorites".localized
+        favoritesViewController.tabBarItem = UITabBarItem.init(title: "Favorites".localized, image: UIImage(named: "favorites"), tag: 3)
+        
+        let controllerArray: [UIViewController] = [homepageViewController, routesViewController, checkBalanceViewController, favoritesViewController]
         
         self.viewControllers = controllerArray.map{
             UINavigationController.init(rootViewController: $0)

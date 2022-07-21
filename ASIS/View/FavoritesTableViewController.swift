@@ -22,6 +22,11 @@ final class FavoritesTableViewController: UITableViewController {
         viewModel.setDelegate(output: self)
         viewModel.fetchServices()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        fetch()
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count

@@ -9,12 +9,6 @@ import UIKit
 import FirebaseAuth
 
 final class SideMenuTableViewController: UITableViewController {
-    
-    let menuItems = [
-        "Account Settings".localized : AccountSettingsViewController(),
-        "Share the App" : nil,
-        "Change Language".localized : LanguagePreferencesViewController()
-    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +16,7 @@ final class SideMenuTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 6
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -30,15 +24,21 @@ final class SideMenuTableViewController: UITableViewController {
         
         switch indexPath.row{
         case 0:
+            cell.textLabel?.text = "Bus Locations".localized
+            cell.imageView?.image = UIImage(named: "bus-location")
+        case 1:
+            cell.textLabel?.text = "Bus Stops".localized
+            cell.imageView?.image = UIImage(named: "station")
+        case 2:
             cell.textLabel?.text = "Account Settings".localized
             cell.imageView?.image = UIImage(named: "account")
-        case 1:
+        case 3:
             cell.textLabel?.text = "Share the App".localized
             cell.imageView?.image = UIImage(named: "app-store")
-        case 2:
+        case 4:
             cell.textLabel?.text = "Change Language".localized
             cell.imageView?.image = UIImage(named: "language")
-        case 3:
+        case 5:
             cell.textLabel?.text = "Sign out".localized
             cell.imageView?.image = UIImage(named: "sign-out")
         default:
@@ -52,12 +52,16 @@ final class SideMenuTableViewController: UITableViewController {
         
         switch indexPath.row{
         case 0:
-            navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
+            navigationController?.pushViewController(LiveVehicleLocationsViewController(), animated: true)
         case 1:
-            shareTapped()
+            navigationController?.pushViewController(BusStationsViewController(), animated: true)
         case 2:
-            navigationController?.pushViewController(LanguagePreferencesViewController(), animated: true)
+            navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
         case 3:
+            shareTapped()
+        case 4:
+            navigationController?.pushViewController(LanguagePreferencesViewController(), animated: true)
+        case 5:
             do {
                 try FirebaseAuth.Auth.auth().signOut()
                 UIApplication.shared.windows.first?.rootViewController = LoginViewController()

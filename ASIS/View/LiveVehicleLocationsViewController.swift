@@ -38,6 +38,7 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
         setMapConstraints()
         viewModel.setDelegate(output: self)
         viewModel.fetchVehicles()
+        title = "Bus Locations".localized
         self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { _ in
             self.viewModel.fetchVehicles()
         })
@@ -57,6 +58,7 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
         
         for vehicle in vehicles {
             let pin = BusAnnotation(coordinate: CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude), vehicleID: vehicle.vehicleID, angle: vehicle.heading ?? 0)
+            pin.title = "\(vehicle.destination ?? "unknown")"
             busAnnotations.append(pin)
         }
         
@@ -84,7 +86,7 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
     func render(_ location: CLLocation){
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         personAnnotation = MKPointAnnotation()
-        personAnnotation.title = "person"
+        personAnnotation.title = "You".localized
         personAnnotation.coordinate = coordinate
         mapView.addAnnotation(personAnnotation)
     }
@@ -117,17 +119,17 @@ extension LiveVehicleLocationsViewController: MKMapViewDelegate {
             return nil
         }
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "busAnnotation")
         
         if annotationView == nil {
             //create view
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
+            annotationView = BusAnnotationView(annotation: annotation, reuseIdentifier: "busAnnotation")
         } else {
             //assign annotation
             annotationView?.annotation = annotation
         }
         
-        if annotationView?.annotation?.title == "person" {
+        if annotationView?.annotation?.title == "You".localized {
             annotationView?.image = UIImage(named: "person-annotation")
             annotationView?.displayPriority = .required
             return annotationView
@@ -135,6 +137,7 @@ extension LiveVehicleLocationsViewController: MKMapViewDelegate {
         
         annotationView?.image = UIImage(named: "bus-annotation")
         annotationView?.displayPriority = .defaultHigh
+        
         
         return annotationView
     }

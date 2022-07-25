@@ -45,12 +45,15 @@ final class HomepageTabBarController: UITabBarController {
         routesViewController.title = "Routes".localized
         routesViewController.tabBarItem = UITabBarItem.init(title: "Routes".localized, image: UIImage(named: "route"), tag: 2)
         
+        let howToGoController = HowToGoViewController()
+        howToGoController.title = "How to Go?".localized
+        howToGoController.tabBarItem = UITabBarItem.init(title: "How to Go?".localized, image: UIImage(named: "how-to-go"), tag: 3)
         
         let favoritesViewController = FavoritesTableViewController()
         favoritesViewController.title = "Favorites".localized
-        favoritesViewController.tabBarItem = UITabBarItem.init(title: "Favorites".localized, image: UIImage(named: "favorites"), tag: 3)
+        favoritesViewController.tabBarItem = UITabBarItem.init(title: "Favorites".localized, image: UIImage(named: "favorites"), tag: 4)
         
-        let controllerArray: [UIViewController] = [homepageViewController, routesViewController, checkBalanceViewController, favoritesViewController]
+        let controllerArray: [UIViewController] = [homepageViewController, routesViewController, howToGoController, checkBalanceViewController, favoritesViewController]
         
         self.viewControllers = controllerArray.map{
             UINavigationController.init(rootViewController: $0)

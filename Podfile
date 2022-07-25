@@ -9,6 +9,7 @@ target 'ASIS' do
   pod 'Alamofire'
   pod 'SideMenu', '~> 6.0'
   pod 'DropDown'
+  pod 'FloatingPanel'
   pod 'IQKeyboardManagerSwift'
   pod 'Gifu'
   

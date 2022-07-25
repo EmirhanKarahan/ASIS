@@ -128,6 +128,7 @@ final class RegisterViewController: UIViewController {
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.borderColor = UIColor(red: 47/255, green: 128/255, blue: 237/255, alpha: 1).cgColor
         emailTextField.autocapitalizationType = .none
+        emailTextField.setHorizonzalPaddingPoints(5)
         emailTextField.autocorrectionType = .no
         emailTextField.layer.cornerRadius = 6
         view.addSubview(emailTextField)
@@ -145,6 +146,7 @@ final class RegisterViewController: UIViewController {
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.borderColor = UIColor(red: 47/255, green: 128/255, blue: 237/255, alpha: 1).cgColor
         passwordTextField.autocapitalizationType = .none
+        passwordTextField.setHorizonzalPaddingPoints(5)
         passwordTextField.isSecureTextEntry = true
         passwordTextField.layer.cornerRadius = 6
         view.addSubview(passwordTextField)
@@ -162,6 +164,7 @@ final class RegisterViewController: UIViewController {
         passwordAgainTextField.layer.borderWidth = 1
         passwordAgainTextField.layer.borderColor = UIColor(red: 47/255, green: 128/255, blue: 237/255, alpha: 1).cgColor
         passwordAgainTextField.autocapitalizationType = .none
+        passwordAgainTextField.setHorizonzalPaddingPoints(5)
         passwordAgainTextField.isSecureTextEntry = true
         passwordAgainTextField.layer.cornerRadius = 6
         view.addSubview(passwordAgainTextField)

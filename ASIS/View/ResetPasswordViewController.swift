@@ -26,13 +26,13 @@ final class ResetPasswordViewController: UIViewController {
         view.backgroundColor = .white
         
         titleLabel = UILabel()
-        titleLabel.text = "Reset Password"
+        titleLabel.text = "Reset Password".localized
         titleLabel.font = .systemFont(ofSize: 36, weight: .bold)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(titleLabel)
         
         mailLabel = UILabel()
-        mailLabel.text = "Your Email"
+        mailLabel.text = "Your Email".localized
         mailLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mailLabel)
         
@@ -44,6 +44,7 @@ final class ResetPasswordViewController: UIViewController {
         mailTextField.layer.borderWidth = 1.0
         mailTextField.layer.borderColor = UIColor(white: 0.5, alpha: 0.3).cgColor
         mailTextField.layer.cornerRadius = 5
+        mailTextField.setHorizonzalPaddingPoints(5)
         mailTextField.autocorrectionType = .no
         mailTextField.autocapitalizationType = .none
         mailTextField.keyboardType = .emailAddress
@@ -51,7 +52,7 @@ final class ResetPasswordViewController: UIViewController {
         view.addSubview(mailTextField)
         
         resetPasswordButton = UIButton()
-        resetPasswordButton.setTitle("Reset", for: .normal)
+        resetPasswordButton.setTitle("Reset".localized, for: .normal)
         resetPasswordButton.layer.cornerRadius = 5
         resetPasswordButton.backgroundColor = .systemGreen
         resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
@@ -59,7 +60,7 @@ final class ResetPasswordViewController: UIViewController {
         view.addSubview(resetPasswordButton)
         
         cancelButton = UIButton()
-        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.setTitle("Cancel".localized, for: .normal)
         cancelButton.backgroundColor = .systemGray6
         cancelButton.layer.cornerRadius = 5
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)

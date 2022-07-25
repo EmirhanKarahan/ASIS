@@ -126,6 +126,7 @@ final class LoginViewController: UIViewController {
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.borderColor = UIColor(red: 47/255, green: 128/255, blue: 237/255, alpha: 1).cgColor
         emailTextField.autocapitalizationType = .none
+        emailTextField.setHorizonzalPaddingPoints(5)
         emailTextField.autocorrectionType = .no
         emailTextField.keyboardType = .emailAddress
         emailTextField.layer.cornerRadius = 8
@@ -145,6 +146,7 @@ final class LoginViewController: UIViewController {
         passwordTextField.layer.masksToBounds = true
         passwordTextField.layer.borderColor = UIColor(red: 47/255, green: 128/255, blue: 237/255, alpha: 1).cgColor
         passwordTextField.autocapitalizationType = .none
+        passwordTextField.setHorizonzalPaddingPoints(5)
         passwordTextField.isSecureTextEntry = true
         passwordTextField.layer.cornerRadius = 8
         view.addSubview(passwordTextField)
@@ -158,7 +160,7 @@ final class LoginViewController: UIViewController {
         
         resetPasswordButton = UIButton(type: .system)
         resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
-        resetPasswordButton.setTitle("Reset Password", for: .normal)
+        resetPasswordButton.setTitle("Reset Password".localized, for: .normal)
         resetPasswordButton.addTarget(self, action: #selector(didTapResetPassword), for: .touchUpInside)
         view.addSubview(resetPasswordButton)
     

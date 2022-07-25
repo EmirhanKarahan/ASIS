@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E002361288EB112008A277D /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E002360288EB112008A277D /* CLLocation+Extension.swift */; };
 		1E12D43F286AD64D00E8A57B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E12D43E286AD64D00E8A57B /* String+Extensions.swift */; };
 		1E12D443286AD75800E8A57B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1E12D445286AD75800E8A57B /* Localizable.strings */; };
 		1E12D449286AF22000E8A57B /* NFCHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E12D448286AF22000E8A57B /* NFCHelper.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E002360288EB112008A277D /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
 		1E12D43E286AD64D00E8A57B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		1E12D440286AD70B00E8A57B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1E12D444286AD75800E8A57B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				1E12D43E286AD64D00E8A57B /* String+Extensions.swift */,
 				1E62B761286B2CA200CD9F08 /* UITextField+Extension.swift */,
 				1E986532288A7A3D009A6E82 /* UIImage+Extension.swift */,
+				1E002360288EB112008A277D /* CLLocation+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				1E62B768286B399400CD9F08 /* LiveVehicleLocationsViewModel.swift in Sources */,
 				1E326DE8286DE2A800AA6EB2 /* BusServicesService.swift in Sources */,
 				1E321B552876D38B00F88F32 /* WalkthroughViewController.swift in Sources */,
+				1E002361288EB112008A277D /* CLLocation+Extension.swift in Sources */,
 				1E6793E62869E94D00ADEE4B /* RoutesViewController.swift in Sources */,
 				1E326DE6286DE23E00AA6EB2 /* BusServicesViewModel.swift in Sources */,
 				1E6793B72869971C00ADEE4B /* AppDelegate.swift in Sources */,

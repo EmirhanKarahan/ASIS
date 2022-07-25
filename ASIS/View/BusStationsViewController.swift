@@ -15,7 +15,6 @@ protocol BusStationsOutPut {
 final class BusStationsViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    
     lazy var viewModel:BusStationsViewModel = BusStationsViewModel()
     
     private var stops: [Stop] = [] {

@@ -16,9 +16,30 @@ protocol HowToGoOutput {
 final class HowToGoViewController: UIViewController, FloatingPanelControllerDelegate, CLLocationManagerDelegate {
     private var fpc: FloatingPanelController!
     lazy private var viewModel:HowToGoViewModel = HowToGoViewModel()
+    
+    private var startingPoint:HowToGoPoint!
+    private var targetPoint:HowToGoPoint!
+    private var currentPersonLocation:CLLocation!
+    
+    private var startingStop:Stop!
+    private var targetStop:Stop!
+    private var nearestLocation:CLLocationCoordinate2D!
+    
+    func startHowToGo(startingPoint:HowToGoPoint, targetPoint:HowToGoPoint){
+        self.startingPoint = startingPoint
+        self.targetPoint = targetPoint
+
+        nearestLocation = (currentPersonLocation.nearestCoordinate(locations: stops.map({return CLLocationCoordinate2D(latitude: $0.latitude!, longitude: $0.longitude!)})) )
+        startingStop = stops.first(where: { $0.longitude == nearestLocation.longitude && $0.latitude == nearestLocation.latitude })
+        print(startingPoint.pointName)
+        print(startingStop.name)
+        
+    }
+    
     private var stops:[Stop] = [] {
         didSet{
             let vc = FloatingPanelContentTableViewController()
+            vc.parentVC = self
             vc.stops = stops
             configureFloatingPanelWithVC(VC: vc)
         }
@@ -51,6 +72,7 @@ final class HowToGoViewController: UIViewController, FloatingPanelControllerDele
         if let location = locations.first {
             locationManager.stopUpdatingLocation()
             render(location)
+            currentPersonLocation = location
         }
     }
     

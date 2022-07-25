@@ -8,9 +8,37 @@
 import UIKit
 import CoreData
 
+extension FavoritesTableViewController {
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .black
+        messageLabel.numberOfLines = 0
+        messageLabel.font = .systemFont(ofSize: 20, weight: .semibold)
+        messageLabel.textAlignment = .center
+        messageLabel.sizeToFit()
+        
+        tableView.backgroundView = messageLabel
+        tableView.separatorStyle = .none
+    }
+    
+    func restore() {
+        tableView.backgroundView = nil
+        tableView.separatorStyle = .singleLine
+    }
+}
+
 final class FavoritesTableViewController: UITableViewController {
     
-    var data = [NSManagedObject]()
+    var data = [NSManagedObject](){
+        didSet{
+            if data.count <= 0 {
+                setEmptyMessage("Your favorites are empty, visit routes and try adding a favorite.".localized)
+            }else {
+                restore()
+            }
+        }
+    }
     var services = [Service]()
     
     private let viewModel: BusServicesViewModel = BusServicesViewModel()

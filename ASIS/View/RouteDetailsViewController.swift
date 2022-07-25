@@ -17,8 +17,6 @@ protocol RouteDetailsOutput{
 }
 
 final class RouteDetailsViewController: UIViewController, CLLocationManagerDelegate {
-    //MARK: Properties
-    
     private var data = [NSManagedObject]()
     var selectedService: Service!
     private let locationManager = CLLocationManager()
@@ -53,8 +51,8 @@ final class RouteDetailsViewController: UIViewController, CLLocationManagerDeleg
             }
             
             mapView.removeAnnotations(annotations)
-            busAnnotations.removeAll()
             mapView.removeOverlays(mapView.overlays)
+            busAnnotations.removeAll()
             drawRoute()
             
             isSetCoordinatesMoreThanOnce = false
@@ -69,6 +67,7 @@ final class RouteDetailsViewController: UIViewController, CLLocationManagerDeleg
                     if point.stop_id != nil {
                         let pin = MKPointAnnotation()
                         pin.coordinate = CLLocationCoordinate2D(latitude: point.latitude!, longitude: point.longitude!)
+                        pin.title = "stop"
                         self.mapView.addAnnotation(pin)
                     }
                 }
@@ -98,6 +97,7 @@ final class RouteDetailsViewController: UIViewController, CLLocationManagerDeleg
         for vehicle in vehicles {
             let pin = BusAnnotation(coordinate: CLLocationCoordinate2D(latitude: vehicle.latitude, longitude: vehicle.longitude), vehicleID: vehicle.vehicleID, angle: vehicle.heading ?? 0)
             busAnnotations.append(pin)
+            pin.title = "\(vehicle.destination ?? "unknown")"
         }
         
         mapView.addAnnotations(busAnnotations)
@@ -288,30 +288,39 @@ extension RouteDetailsViewController: MKMapViewDelegate{
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
         
         if annotationView == nil{
-            //create view
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
         }else{
-            //assign annotation
             annotationView?.annotation = annotation
         }
         
         if annotationView?.annotation?.title == "person" {
             annotationView?.image = UIImage(named: "person-annotation")
-            annotationView?.displayPriority = .required
             return annotationView
         }
         
-        if annotationView?.annotation is BusAnnotation{
-            annotationView?.image = UIImage(named: "bus-annotation")
-            annotationView?.displayPriority = .required
+        if annotationView?.annotation?.title == "stop" {
+            annotationView?.image = UIImage(named: "bus-station-annotation-2")
             return annotationView
         }
         
-        annotationView?.image = UIImage(named: "bus-station-annotation-2")
-        annotationView?.displayPriority = .required
+        let busAnnotation = annotation as! BusAnnotation
+        annotationView = BusAnnotationView(annotation: busAnnotation, reuseIdentifier: "busAnnotation")
         
+        annotationView?.image = UIImage(named: "arrow")?.rotate(angle: busAnnotation.angle)
+        
+        let breathAnimation = CABasicAnimation(keyPath: "opacity")
+        breathAnimation.fromValue = 0.7
+        breathAnimation.toValue = 1
+        
+        let animations = CAAnimationGroup()
+        animations.duration = 0.8
+        animations.repeatCount = .infinity
+        animations.animations = [breathAnimation]
+        
+        annotationView?.layer.add(animations, forKey: nil)
         return annotationView
     }
+    
 }
 
 extension RouteDetailsViewController : RouteDetailsOutput {

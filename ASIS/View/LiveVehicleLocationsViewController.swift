@@ -35,6 +35,7 @@ final class LiveVehicleLocationsViewController: UIViewController, CLLocationMana
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        mapView.isRotateEnabled = false
         setMapConstraints()
         viewModel.setDelegate(output: self)
         viewModel.fetchVehicles()
@@ -135,9 +136,23 @@ extension LiveVehicleLocationsViewController: MKMapViewDelegate {
             return annotationView
         }
         
-        annotationView?.image = UIImage(named: "bus-annotation")
-        annotationView?.displayPriority = .defaultHigh
+        annotationView?.image = UIImage(named: "arrow")
         
+        if let anno = annotation as? BusAnnotation {
+            annotationView?.image = UIImage(named: "arrow")?.rotate(angle: anno.angle)
+        }
+        
+        let breathAnimation = CABasicAnimation(keyPath: "opacity")
+        breathAnimation.fromValue = 0.7
+        breathAnimation.toValue = 1
+    
+        let animations = CAAnimationGroup()
+        animations.duration = 0.8
+        animations.repeatCount = .infinity
+        animations.animations = [breathAnimation]
+        
+        annotationView?.layer.add(animations, forKey: nil)
+        annotationView?.displayPriority = .defaultHigh
         
         return annotationView
     }

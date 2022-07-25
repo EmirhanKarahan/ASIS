@@ -26,6 +26,10 @@
 "Sign Up" = "Kayıt Ol";
 "Sign In" = "Giriş Yap";
 
+"Cancel" = "İptal";
+"Reset" = "Sıfırla";
+"Your Email" = "Email Adresiniz";
+
 "Change Language" = "Dil Değiştir";
 "Account Settings" = "Hesap Ayarları";
 "Share the App" = "Uygulamayı Paylaş";
@@ -64,3 +68,11 @@
 "Dest.:" = "Yön:";
 "You" = "Siz";
 
+"How to Go?"="Nasıl Giderim?";
+
+"Favorites" = "Favoriler";
+"Your favorites are empty, visit routes and try adding a favorite." = "Favorileriniz tamamen boş, rotaları ziyaret edin ve bir tane eklemeyi deneyin.";
+
+"Go" = "Git";
+"From:" = "Kalkış:";
+"To:" = "Varış:";

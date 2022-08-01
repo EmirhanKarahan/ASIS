@@ -65,7 +65,7 @@ final class JourneysFloatingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: JourneyTableViewCell.identifier, for: indexPath) as! JourneyTableViewCell
         cell.serviceNameLabel.text = "\(journeys[indexPath.row].serviceName)"
         cell.directionNameLabel.text = "\(journeys[indexPath.row].destination)"
-        cell.durationLabel.text = "\(calculateArrivalTime(journey: journeys[indexPath.row])) \("min".localized)"
+        cell.durationLabel.text = "\(calculateArrivalTime(journey: journeys[indexPath.row]))\("min".localized)"
         return cell
     }
     
@@ -83,27 +83,12 @@ final class JourneysFloatingTableViewController: UITableViewController {
         let arrivalTimeMinuteSection = Int(arrivalTime.suffix(2))!
         
         let today = Date().convert(from: TimeZone(abbreviation: "GMT+1")!, to: TimeZone(abbreviation: "GMT+3")!)
-        
-        // 2. Pick the date components
         let hours   = (Calendar.current.component(.hour, from: today))
         let minutes = (Calendar.current.component(.minute, from: today))
-    
-        // 3. Show the time
-        print("🥹 \(hours):\(minutes)")
-        
-        
-        
-        
-        
-        
-        
-        let hourDifference = arrivalTimeHourSection -  departureTimeHourSection
-        let minuteDifference = arrivalTimeMinuteSection - departureTimeMinuteSection
-        
-   
-        
-        
 
+        let hourDifference =  arrivalTimeHourSection -  departureTimeHourSection + departureTimeHourSection - hours
+        let minuteDifference =  arrivalTimeMinuteSection - departureTimeMinuteSection + departureTimeMinuteSection - minutes
+        
         return hourDifference * 60 + minuteDifference
     }
    

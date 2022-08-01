@@ -56,7 +56,7 @@ final class HomepageViewController: UIViewController, CLLocationManagerDelegate 
         view.backgroundColor = .white
         
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        mapView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         mapView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true

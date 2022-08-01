@@ -12,6 +12,7 @@ final class SideMenuTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundColor = .systemGray6
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "sideMenuCell")
     }
 
@@ -21,6 +22,7 @@ final class SideMenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCell", for: indexPath)
+        cell.backgroundColor = .systemGray6
         
         switch indexPath.row{
         case 0:

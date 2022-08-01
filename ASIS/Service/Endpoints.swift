@@ -22,5 +22,10 @@ enum EdinburgTransportationEndPoint: String {
     static func busServicesPath() -> String {
         return "\(BASE_URL.rawValue)\(BUS_SERVICES_PATH.rawValue)"
     }
+    
+    static func stopToStopTimetablesPath(startStopID:Int, finishStopID:Int) -> String {
+        return "\(BASE_URL.rawValue)/stoptostop-timetable/?start_stop_id=\(startStopID)&finish_stop_id=\(finishStopID)&date=&duration="
+    }
+    
 
 }

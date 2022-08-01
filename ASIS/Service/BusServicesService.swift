@@ -21,7 +21,7 @@ struct BusServicesService: IBusServicesService{
                 response(nil)
                 return
             }
-            response(data.services)
+            response(data.services?.filter { $0.routes != nil && !$0.routes!.isEmpty })
         }
     }
 }

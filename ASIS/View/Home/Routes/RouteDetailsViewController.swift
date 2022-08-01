@@ -72,8 +72,6 @@ final class RouteDetailsViewController: UIViewController, CLLocationManagerDeleg
                     }
                 }
             }
-            
-            
         }
     }
     

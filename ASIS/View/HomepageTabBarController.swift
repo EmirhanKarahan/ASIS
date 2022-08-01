@@ -13,6 +13,7 @@ final class HomepageTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "ASIS"
         addViewControllersToTabBar()
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "burger-menu"), style: .plain, target: self, action: #selector(openSideMenu))
     }
@@ -55,9 +56,7 @@ final class HomepageTabBarController: UITabBarController {
         
         let controllerArray: [UIViewController] = [homepageViewController, routesViewController, howToGoController, checkBalanceViewController, favoritesViewController]
         
-        self.viewControllers = controllerArray.map{
-            UINavigationController.init(rootViewController: $0)
-        }
+        self.viewControllers = controllerArray
     }
     
 }

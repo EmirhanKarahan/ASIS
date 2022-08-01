@@ -25,7 +25,7 @@ struct Stop: Codable {
     let atcoLatitude, atcoLongitude: Double?
     
     enum CodingKeys: String, CodingKey {
-        case stopID
+        case stopID = "stop_id"
         case atcoCode
         case name, identifier, locality, orientation, direction, latitude, longitude
         case serviceType

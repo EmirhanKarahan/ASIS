@@ -22,7 +22,7 @@ struct StopToStopTimetablesResult: Codable {
 // MARK: - Journey
 struct Journey: Codable {
     let serviceName: String
-    let destination: Destination
+    let destination: String
     let departures: [Departure]
 
     enum CodingKeys: String, CodingKey {
@@ -42,9 +42,4 @@ struct Departure: Codable {
         case name, time
         case timingPoint = "timing_point"
     }
-}
-
-enum Destination: String, Codable {
-    case oceanTerminal = "Ocean Terminal"
-    case southLeith = "South Leith"
 }

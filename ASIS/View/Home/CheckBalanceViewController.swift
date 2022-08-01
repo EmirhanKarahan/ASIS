@@ -123,6 +123,7 @@ final class CheckBalanceViewController: UIViewController {
         cardIDTextField.layer.borderColor = UIColor.lightGray.cgColor
         cardIDTextField.layer.borderWidth = 1
         cardIDTextField.layer.cornerRadius = 5
+        cardIDTextField.setHorizonzalPaddingPoints(10)
         view.addSubview(cardIDTextField)
         
         let scanNFCButton = UIButton(type: .system)

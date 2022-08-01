@@ -1,16 +1,14 @@
-//
-//  FloatingPanelContentTableViewController.swift
-//  ASIS
-//
-//  Created by Emirhan KARAHAN on 22.07.2022.
-//
+
 
 import UIKit
 import CoreLocation
 
-final class FloatingPanelContentTableViewController: UITableViewController {
+final class DestinationsFloatingTableViewController: UITableViewController, UISearchBarDelegate {
+    
+    private let searchBar = UISearchBar()
     
     var stops = [Stop]()
+    var filteredStops = [Stop]()
     var pointsInHeaderView:PointsInHeaderView!
     
     var parentVC:HowToGoViewController!
@@ -20,25 +18,24 @@ final class FloatingPanelContentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "custom")
+        filteredStops = stops
         pointsInHeaderView = PointsInHeaderView()
         pointsInHeaderView.translatesAutoresizingMaskIntoConstraints = false
         pointsInHeaderView.parentVC = self
+        searchBar.sizeToFit()
+        searchBar.delegate = self
         view.addSubview(pointsInHeaderView)
         NSLayoutConstraint.activate([
             pointsInHeaderView.widthAnchor.constraint(equalToConstant: 160),
             pointsInHeaderView.heightAnchor.constraint(equalToConstant: 100),
             pointsInHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            pointsInHeaderView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            pointsInHeaderView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             ])
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.bringSubviewToFront(pointsInHeaderView)
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        2
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -48,8 +45,55 @@ final class FloatingPanelContentTableViewController: UITableViewController {
         return "Destination Point".localized
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            let vw = UIView()
+            vw.backgroundColor = tableView.backgroundColor
+            let label = UILabel()
+            label.text =  "Destination Point".localized
+            label.textColor = .systemGray
+            label.font = .systemFont(ofSize: 15, weight: .semibold)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            vw.addSubview(label)
+            vw.addSubview(searchBar)
+            searchBar.translatesAutoresizingMaskIntoConstraints = false
+            vw.heightAnchor.constraint(equalToConstant: 100).isActive = true
+            label.leadingAnchor.constraint(equalTo: vw.leadingAnchor, constant: 18).isActive = true
+           
+            NSLayoutConstraint.activate([
+                label.topAnchor.constraint(equalTo: vw.topAnchor, constant: 5),
+                searchBar.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
+                searchBar.centerXAnchor.constraint(equalTo: vw.centerXAnchor),
+                searchBar.widthAnchor.constraint(equalTo: vw.widthAnchor),
+            ])
+            return vw
+        }
+        return nil
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredStops = []
+
+        if searchText == "" {
+            filteredStops = stops
+            tableView.reloadData()
+            return
+        }
+
+        for stop in stops {
+            if "\(stop.direction ?? "unknown") - \(stop.name ?? "unknown")".lowercased().contains(searchText.lowercased()){
+                filteredStops.append(stop)
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : stops.count
+        return section == 0 ? 1 : filteredStops.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,21 +104,21 @@ final class FloatingPanelContentTableViewController: UITableViewController {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "custom", for: indexPath)
-        cell.textLabel?.text = "\(stops[indexPath.row].direction!) - \(stops[indexPath.row].name!)"
+        cell.textLabel?.text = "\(filteredStops[indexPath.row].direction ?? "unknown") - \(filteredStops[indexPath.row].name ?? "unknown")"
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            startingPoint = HowToGoPoint(pointName: "You".localized, coordinate: CLLocationCoordinate2D(), stopID: nil)
+            startingPoint = HowToGoPoint(pointName: "You".localized, coordinate: CLLocationCoordinate2D(), stop: nil)
             pointsInHeaderView.fromLabel.text = "You".localized
             return
         }
         
         var coordinate = CLLocationCoordinate2D()
-        coordinate.latitude = stops[indexPath.row].latitude!
-        coordinate.longitude = stops[indexPath.row].longitude!
-        targetPoint = HowToGoPoint(pointName: stops[indexPath.row].name ?? "?", coordinate: coordinate, stopID: stops[indexPath.row].stopID)
+        coordinate.latitude = filteredStops[indexPath.row].latitude!
+        coordinate.longitude = filteredStops[indexPath.row].longitude!
+        targetPoint = HowToGoPoint(pointName: filteredStops[indexPath.row].name ?? "?", coordinate: coordinate, stop: filteredStops[indexPath.row])
         pointsInHeaderView.toLabel.text = targetPoint?.pointName
     }
     
@@ -93,7 +137,7 @@ final class PointsInHeaderView : UIView {
     var toInfoLabel:UILabel!
     var toLabel:UILabel!
     var goButton:UIButton!
-    var parentVC:FloatingPanelContentTableViewController!
+    var parentVC:DestinationsFloatingTableViewController!
     
     override init(frame: CGRect) {
         super.init(frame: .zero)

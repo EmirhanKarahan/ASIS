@@ -79,3 +79,10 @@
 
 "Starting Point" = "Başlangıç Noktası";
 "Destination Point" = "Varış Noktası" ;
+
+
+"Choose a journey" = "Yolculuk seçiniz";
+"Destination: " = "Varış Noktası: ";
+"Service Name: " = "Hat Adı: ";
+"min" = "dk";
+

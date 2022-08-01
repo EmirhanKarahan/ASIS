@@ -11,5 +11,5 @@ import CoreLocation
 struct HowToGoPoint {
     let pointName: String
     let coordinate: CLLocationCoordinate2D
-    let stopID: Int?
+    let stop: Stop?
 }

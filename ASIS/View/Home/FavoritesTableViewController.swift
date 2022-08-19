@@ -17,7 +17,6 @@ extension FavoritesTableViewController {
         messageLabel.font = .systemFont(ofSize: 20, weight: .semibold)
         messageLabel.textAlignment = .center
         messageLabel.sizeToFit()
-        
         tableView.backgroundView = messageLabel
         tableView.separatorStyle = .none
     }

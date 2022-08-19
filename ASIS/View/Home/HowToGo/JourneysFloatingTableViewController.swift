@@ -73,7 +73,7 @@ final class JourneysFloatingTableViewController: UITableViewController {
         parentVC.selectedJourney = journeys[indexPath.row]
     }
     
-    private func calculateArrivalTime(journey:Journey) -> Int{
+    private func calculateArrivalTime(journey:Journey) -> Int {
         let departureTime = journey.departures.first!.time
         let arrivalTime = journey.departures.last!.time
         
@@ -85,7 +85,7 @@ final class JourneysFloatingTableViewController: UITableViewController {
         let today = Date().convert(from: TimeZone(abbreviation: "GMT+1")!, to: TimeZone(abbreviation: "GMT+3")!)
         let hours   = (Calendar.current.component(.hour, from: today))
         let minutes = (Calendar.current.component(.minute, from: today))
-
+        
         let hourDifference =  arrivalTimeHourSection -  departureTimeHourSection + departureTimeHourSection - hours
         let minuteDifference =  arrivalTimeMinuteSection - departureTimeMinuteSection + departureTimeMinuteSection - minutes
         

@@ -43,7 +43,7 @@ final class RoutesViewController: UITableViewController, UISearchBarDelegate {
         configureViews()
     }
     
-    private func configureViews(){
+    private func configureViews() {
         spinner = UIActivityIndicatorView()
         spinner.startAnimating()
         spinner.style = .large
